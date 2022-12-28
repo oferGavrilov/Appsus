@@ -1,0 +1,55 @@
+.add-note {
+    width: 315px;
+    z-index: 10;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    line-height: 50px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+    /* margin: 20px; */
+    margin: 32px auto 32px auto;
+    background-color: #fff;
+    position: relative;
+  }
+  
+  .add-note form {
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    position: relative;
+  }
+  
+  .add-note form input {
+    background-color: #fff;
+
+    outline: none;
+    padding: 12px 16px 12px 16px;
+    width: 100%;
+    font-size: 16px;
+    border: solid transparent;
+    letter-spacing: 0.2px;
+    height: 100%;
+  }
+  .note-type-btns {
+    display: flex;
+    justify-content: space-between;
+    right: 20px;
+    top: 0;
+    position: absolute;
+  }
+  
+  .note-type-btns > * {
+    border: none;
+    color: rgb(114 114 114);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: unset;
+  }
+  
+  .note-type-btns > *:hover {
+    opacity: 0.87;
+    background-color: rgba(95, 99, 104, 0.157);
+    color: rgb(24, 24, 24);
+  }

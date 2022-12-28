@@ -1,0 +1,15 @@
+.note-tools{
+}
+
+.buttons-container > button {
+    background-color: unset;
+    font-size: 1rem;
+    margin: 0 1rem;
+    padding: 0;
+    opacity: 0;
+
+    transition: .3s;
+}
+.note-text-container:hover  button {
+    opacity: 1;
+}

@@ -14,7 +14,8 @@ export const noteService = {
     saveNotesToStorage,
     loadNotesFromStorage,
     getUser,
-    createEmptyNote
+    createEmptyNote,
+    updateNote
 }
 
 
@@ -24,7 +25,7 @@ function query(filterBy = getDefaultFilter()) {
         .then(notes => {
             if (filterBy.txt) {
                 const txtRegex = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => txtRegex.test(note.info.txt))
+                notes = notes.filter(note => txtRegex.test(note.txt))
             }
             return notes
         })
@@ -55,6 +56,10 @@ function save(note) {
     return storageService.post(NOTE_KEY, note)
 }
 
+function updateNote(note) {
+    return storageService.put(NOTE_KEY, note)
+}
+
 function getDefaultFilter() {
     return { txt: '' }
 }
@@ -68,6 +73,7 @@ function getEmptyNote() {
         }
     }
 }
+
 
 function saveNotesToStorage(notes) {
     storageService.saveToStorage(NOTE_KEY, notes)
@@ -84,7 +90,8 @@ function createEmptyNote() {
         // info: {
         //     txt: '',
         // }
-        txt:''
+        txt:'',
+        url:''
     }
 }
 
@@ -102,7 +109,8 @@ function _createNotes() {
                 //     txt: "Working on Appsus!"
                 // }
                 txt:"Working on Appsus!"
-            }, {
+            },
+             {
                 id: "n102",
                 type: "note-txt",
                 isPinned: false,
@@ -110,15 +118,25 @@ function _createNotes() {
                 //     txt: "Need to sleep!"
                 // }
                 txt:"Need to sleep!"
-            }, {
+            },
+             {
                 id: "n103",
                 type: "note-txt",
-                isPinned: true,
+                isPinned: false,
                 // info: {
                 //     txt: "Alex the greatest metargel!"
                 // }
                 txt:"Alex the greatest metargel!"
             },
+            //  {
+            //     id: "n104",
+            //     type: "note-img",
+            //     isPinned: false,
+            //     // info: {
+            //     //     txt: "Alex the greatest metargel!"
+            //     // }
+            //     txt:"Alex the greatest metargel!"
+            // },
         ]
         saveNotesToStorage(notes)
     }
