@@ -1,5 +1,8 @@
 
 export function MailIndex() {
-    return <div>mail app</div>
+    return <main>
+        Hello from mail app
+
+    </main>
 }
 

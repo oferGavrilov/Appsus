@@ -16,9 +16,23 @@ export function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/mail" element={<MailIndex />} />
-                <Route path="/note" element={<NoteIndex />} />
+
+                <Route path="/mail" element={<MailIndex />}>
+
+                </Route>
+
+                <Route path="/note" element={<NoteIndex />}>
+
+
+                </Route>
+
             </Routes>
         </section>
     </Router>
 }
+// Main - mail - index
+// MailList - MailPreview
+// ComposeMail
+// MailDrafts
+// MailFilter
+// LongText

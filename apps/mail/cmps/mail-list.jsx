@@ -1,5 +1,7 @@
 export function MailList() {
 
-    return <div>Mail list</div>
+    return <section className='mail-list'>
+        Hello from Mail list
+    </section>
 
 }
