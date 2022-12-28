@@ -1,5 +1,4 @@
 const { Fragment } = React
-
 import { MailPreview } from './mail-preview.jsx'
 
 export function MailList({ mails, onSelectMail }) {

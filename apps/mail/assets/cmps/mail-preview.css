@@ -4,6 +4,10 @@
     grid-template-columns: .5fr 1fr;
 }
 
+.mail-preview.read {
+    background: rgba(179, 200, 207, 0.31);
+}
+
 .mail-subject {
     font-weight: bold;
 }

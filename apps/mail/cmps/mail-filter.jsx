@@ -3,6 +3,11 @@ export function MailFilter() {
 
 
     return <section className='mail-filter'>
-        <h1>Hello From Mail Filter</h1>
+        <input
+            type="search"
+            name="title"
+            id="title"
+            placeholder='Search mail' />
+
     </section>
 }

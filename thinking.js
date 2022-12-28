@@ -45,3 +45,10 @@
 
 
 // const { useParams, useNavigate, Link } = ReactRouterDOM
+
+
+// MAIL - TODO
+ 
+// Filter: isStared: true, // (optional property, if missing: show all)
+//  lables: ['important', 'romantic'] // has any of the labels
+

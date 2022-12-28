@@ -13,7 +13,8 @@ export const mailService = {
     getEmptyMail,
     saveMailsToStorage,
     loadMailsFromStorage,
-    getUser
+    getUser,
+    getUnreadMailsCount
 }
 
 
@@ -21,9 +22,14 @@ function query(filterBy = getDefaultFilter()) {
 
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy.title) {
-                const titleRegex = new RegExp(filterBy.title, 'i')
-                mails = mails.filter(mail => titleRegex.test(mail.title))
+
+            if (filterBy.status) {
+                mails = mails.filter(mail => mail.status === filterBy.status)
+            }
+
+            if (filterBy.txt) {
+                const txtRegex = new RegExp(filterBy.txt, 'i')
+                mails = mails.filter(mail => txtRegex.test(mail.subject))
             }
             if (filterBy.isRead) {
                 mails = mails.filter(mail => mail.isRead)
@@ -31,12 +37,6 @@ function query(filterBy = getDefaultFilter()) {
 
             return mails
         })
-    // TODO:
-    //  status: 'inbox/sent/trash/draft',
-    //  txt: 'puki', // no need to support complex text search
-    //  isRead: true, // (optional property, if missing: show all)
-    //  isStared: true, // (optional property, if missing: show all)
-    //  lables: ['important', 'romantic'] // has any of the labels
 }
 
 function get(mailId) {
@@ -47,6 +47,13 @@ function remove(mailId) {
     return storageService.remove(MAIL_KEY, mailId)
 }
 
+function getUnreadMailsCount(mails) {
+    return mails.reduce((acc, mail) => {
+        if (!mail.isRead) acc++
+        return acc
+    }, 0)
+}
+
 function getUser() {
     return {
         email: 'momo@appsus.com',
@@ -55,25 +62,30 @@ function getUser() {
 }
 
 function save(mail) {
-    // if (mail.id) {
-    //     return storageService.put(MAIL_KEY, mail)
-    // } else {
-    //     return storageService.post(MAIL_KEY, mail)
-    // }
-    return storageService.post(MAIL_KEY, mail)
+    if (mail.id) {
+        return storageService.put(MAIL_KEY, mail)
+    } else {
+        return storageService.post(MAIL_KEY, mail)
+    }
 }
 
 function getDefaultFilter() {
-    return { title: '', isRead: '' }
+    return {
+        status: 'inbox',
+        txt: ''
+    }
 }
 
 function getEmptyMail() {
     return {
-        title: '',
+        subject: '',
         body: '',
         isRead: false,
         sentAt: '',
-        to: ''
+        removedAt: null,
+        from: 'momo@appsus.com',
+        to: '',
+        status: 'sent'
     }
 }
 
@@ -103,7 +115,10 @@ function _createMails() {
                 Thank you`,
                 isRead: false,
                 sentAt: (Date.now() - 5000),
-                to: 'momo@appsus.com'
+                removedAt: null,
+                from: 'itzik@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             },
             {
                 id: 'e102',
@@ -114,7 +129,10 @@ function _createMails() {
                 I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
                 isRead: false,
                 sentAt: (Date.now() - 4500),
-                to: 'momo@appsus.com'
+                removedAt: null,
+                from: 'spamalot@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             }, {
                 id: 'e103',
                 subject: 'Your readers will love this!',
@@ -122,9 +140,12 @@ function _createMails() {
                 I'm a big fan of your website. I like the products you review here. One of my favorites is the review for AppSus
                 We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
                 `,
-                isRead: false,
+                isRead: true,
                 sentAt: (Date.now() - 4000),
-                to: 'momo@appsus.com'
+                removedAt: null,
+                from: 'spamabit@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             }, {
                 id: 'e104',
                 subject: 'We want to partner with you',
@@ -136,7 +157,10 @@ function _createMails() {
                 `,
                 isRead: false,
                 sentAt: (Date.now() - 3500),
-                to: 'momo@appsus.com'
+                removedAt: null,
+                from: 'dontreply@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             }, {
                 id: 'e105',
                 subject: 'About your free consultation with YouTube!',
@@ -144,9 +168,11 @@ function _createMails() {
                 Thank you for signing up for the free consultation. I am looking forward to speaking with you.
                 If you have any questions about the call, just reply to this email. I will get back to you ASAP.
                 Thank you,`,
-                isRead: false,
+                isRead: true,
                 sentAt: (Date.now() - 3000),
-                to: 'momo@appsus.com'
+                from: 'youtube@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             }, {
                 id: 'e106',
                 subject: 'I just listened to your podcast!',
@@ -158,7 +184,10 @@ function _createMails() {
                 Thank you`,
                 isRead: false,
                 sentAt: (Date.now() - 2500),
-                to: 'momo@appsus.com'
+                from: 'fan@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+
             }, {
                 id: 'e107',
                 subject: 'We cordially invite you to our wedding',
@@ -170,7 +199,10 @@ function _createMails() {
                 Thank you`,
                 isRead: false,
                 sentAt: (Date.now() - 2000),
-                to: 'momo@appsus.com'
+                from: 'issac@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+
             }, {
                 id: 'e108',
                 subject: 'Help us to help serve you better',
@@ -179,12 +211,111 @@ function _createMails() {
                 We want to continue offering the best service.
                 Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
                 Thank you`,
-                isRead: false,
+                isRead: true,
                 sentAt: (Date.now() - 1500),
-                to: 'momo@appsus.com'
+                removedAt: null,
+                from: 'avi@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
             },
+
+            {
+                id: 'e109',
+                subject: 'Dear friend Avi',
+                body: `Avi i tried reaching out yesterday but
+                    you didn't pick my call, call me back
+                    `,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                removedAt: null,
+                status: 'sent',
+                to: 'avi233@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e110',
+                subject: 'business meeting',
+                body: `Hi, in won't be at work until sunday,
+                    try contacting me when im back.
+                Thank you, Momo`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'greener@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e111',
+                subject: 'Send money please',
+                body: `Hi i don't have a job for a while now
+                    please fund me when im watching tv`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'bituahleumi@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e112',
+                subject: 'Delivery',
+                body: `Hi my food was delievered to me cold
+                       don't be afraid to send me pitzoi.
+                Thank you, Momo`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'wolt@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e113',
+                subject: 'Help you to help me serve me better',
+                body: `Hi 
+                i want you to continue offering the best service.
+                Please be honest with your responses. If you didn't like something, don't point it out. .
+                Thank you, Momo`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'foodservice@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e114',
+                subject: 'I support you guys',
+                body: `Hi,
+                Thank you, Momo`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'atzlanim@appsus.com',
+                from: 'momo@appsus.com'
+            },
+
+            {
+                id: 'e115',
+                subject: 'Help me',
+                body: `Hi , please send help
+                Thank you, Momo`,
+                isRead: true,
+                sentAt: (Date.now() - 1500),
+                status: 'sent',
+                to: 'sos@appsus.com',
+                from: 'momo@appsus.com'
+            }
+
         ]
-        saveMailsToStorage(mails)
     }
+
+
+    saveMailsToStorage(mails)
 }
+
+
+
 
