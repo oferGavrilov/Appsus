@@ -1,7 +1,7 @@
 /* Setup */
 
 @import './setup/variables.css';
-@import './setup/fonts.css';
+/* @import './setup/fonts.css'; */
 
 /* Basics */
 
@@ -11,7 +11,7 @@
 /* @import './basics/layout.css'; */
 
 /* Views */
-@import './views/home.css';
+/* @import './views/home.css'; */
 
 /* @import './apps/note/views/note-app.css'; */
 
@@ -46,4 +46,4 @@
 @import '../../apps/note/assets/note-nav.css';
 @import '../../apps/note/assets/note-preview.css';
 @import '../../apps/note/assets/pinned-note.css';
-@import '../../apps/note/assets/viwes/note-index.css';
+@import '../../apps/note/assets/views/note-index.css';
