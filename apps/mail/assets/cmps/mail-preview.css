@@ -1,0 +1,9 @@
+.mail-preview {
+    border-block: 0.1px rgb(128, 128, 128) solid;
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+}
+
+.mail-subject {
+    font-weight: bold;
+}

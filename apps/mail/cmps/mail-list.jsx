@@ -1,7 +1,15 @@
-export function MailList() {
+const { Fragment } = React
 
-    return <section className='mail-list'>
-        Hello from Mail list
+import { MailPreview } from './mail-preview.jsx'
+
+export function MailList({ mails, onSelectMail }) {
+
+    return <section className='mail-list' >
+        {mails.map(mail =>
+            <Fragment key={mail.id}>
+                <MailPreview mail={mail} onSelectMail={onSelectMail} />
+            </Fragment>
+        )}
     </section>
 
 }

@@ -1,8 +1,10 @@
 
-export function MailPreview() {
+import { utilService } from '../../../services/util.service.js'
 
+export function MailPreview({ mail, onSelectMail }) {
 
-    return <section className='mail-preview'>
-        <h2>Hello from main preview</h2>
+    return <section onClick={() => onSelectMail(mail.id)} className='mail-preview'>
+        <div className='mail-subject'>{mail.subject}</div>
+        <div className='mail-body'>{utilService.getTextToDisplay(mail.body, 40)}</div>
     </section>
 }

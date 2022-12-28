@@ -26,17 +26,17 @@
 
 /* Mail */
 @import '../../apps/mail/assets/views/mail-index.css';
-@import '../../apps/mail/assets/cmps/create-mail.css';
-@import '../../apps/mail/assets/cmps/mail-draft.css';
+@import '../../apps/mail/assets/views/mail-details.css';
+@import '../../apps/mail/assets/views/mail-draft.css';
+@import '../../apps/mail/assets/views/mail-trash.css';
+@import '../../apps/mail/assets/views/sent-mails.css';
 
+@import '../../apps/mail/assets/cmps/create-mail.css';
 @import '../../apps/mail/assets/cmps/mail-filter.css';
-@import '../../apps/mail/assets/cmps/mail-draft.css';
 @import '../../apps/mail/assets/cmps/mail-header.css';
 @import '../../apps/mail/assets/cmps/mail-list.css';
 @import '../../apps/mail/assets/cmps/mail-nav.css';
 @import '../../apps/mail/assets/cmps/mail-preview.css';
-@import '../../apps/mail/assets/cmps/mail-trash.css';
-@import '../../apps/mail/assets/cmps/sent-mails.css';
 
 /* Note */
 @import '../../apps/note/assets/note-list.css';
