@@ -1,6 +1,6 @@
 
 export function NoteIndex() {
 
-    return <div>note app</div>
+    return <main className='note-index'>note app</main>
 
 }

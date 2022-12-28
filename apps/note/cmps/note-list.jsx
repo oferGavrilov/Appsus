@@ -1,5 +1,5 @@
 export function NoteList() {
 
-    return <div>note list</div>
+    return <section className='note-list'>note list</section>
 
 }

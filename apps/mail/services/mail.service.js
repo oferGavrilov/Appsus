@@ -31,7 +31,7 @@ function query(filterBy = getDefaultFilter()) {
 
             return mails
         })
-
+    // TODO:
     //  status: 'inbox/sent/trash/draft',
     //  txt: 'puki', // no need to support complex text search
     //  isRead: true, // (optional property, if missing: show all)

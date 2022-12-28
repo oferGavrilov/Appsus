@@ -30,9 +30,3 @@ export function App() {
         </section>
     </Router>
 }
-// Main - mail - index
-// MailList - MailPreview
-// ComposeMail
-// MailDrafts
-// MailFilter
-// LongText
