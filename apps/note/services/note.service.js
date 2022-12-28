@@ -4,7 +4,7 @@ import { storageService } from '../../../services/async-storage.service.js'
 const NOTE_KEY = 'noteDB'
 _createNotes()
 
-export const mailService = {
+export const noteService = {
     query,
     get,
     remove,
@@ -13,7 +13,8 @@ export const mailService = {
     getEmptyNote,
     saveNotesToStorage,
     loadNotesFromStorage,
-    getUser
+    getUser,
+    createEmptyNote
 }
 
 
@@ -76,6 +77,18 @@ function loadNotesFromStorage() {
     return storageService.loadFromStorage(NOTE_KEY)
 }
 
+function createEmptyNote() {
+    return {
+        type:'note-txt',
+        isPinned:false,
+        // info: {
+        //     txt: '',
+        // }
+        txt:''
+    }
+}
+
+
 function _createNotes() {
 
     let notes = loadNotesFromStorage()
@@ -85,23 +98,26 @@ function _createNotes() {
                 id: "n101",
                 type: "note-txt",
                 isPinned: false,
-                info: {
-                    txt: "Working on Appsus!"
-                }
+                // info: {
+                //     txt: "Working on Appsus!"
+                // }
+                txt:"Working on Appsus!"
             }, {
                 id: "n102",
                 type: "note-txt",
                 isPinned: false,
-                info: {
-                    txt: "Need to sleep!"
-                }
+                // info: {
+                //     txt: "Need to sleep!"
+                // }
+                txt:"Need to sleep!"
             }, {
                 id: "n103",
                 type: "note-txt",
                 isPinned: true,
-                info: {
-                    txt: "Alex the greatest metargel!"
-                }
+                // info: {
+                //     txt: "Alex the greatest metargel!"
+                // }
+                txt:"Alex the greatest metargel!"
             },
         ]
         saveNotesToStorage(notes)

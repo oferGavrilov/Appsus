@@ -1,3 +1,6 @@
+
+
+
 export function NoteHeader() {
 
     return <header className='note-header'>
