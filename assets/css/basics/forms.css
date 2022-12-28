@@ -1,0 +1,22 @@
+button {
+    cursor: pointer;
+    background-color: none;
+    margin: 0.5em;
+    border: 0;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+}
+
+button:hover {
+    /* background-color: var(--clr2); */
+    transition: .3s;
+}
+
+input {
+    background: var(--main-bg-color);
+}
+
+input:focus {
+    background-color: var(--main-bg-color2);
+    transition: background-color 1s;
+}

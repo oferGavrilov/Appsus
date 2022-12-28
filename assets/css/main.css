@@ -1,11 +1,12 @@
 /* Setup */
 
 @import './setup/variables.css';
-/* @import './setup/fonts.css'; */
+@import './setup/fonts.css';
 
 /* Basics */
 
 @import './basics/base.css';
+@import './basics/forms.css';
 @import './basics/helpers.css';
 /* @import './basics/layout.css'; */
 
@@ -22,3 +23,27 @@
 @import './cmps/app-header.css';
 
 /* @import './apps/mail/cmps/mail-list.css'; */
+
+/* Mail */
+@import '../../apps/mail/assets/views/mail-index.css';
+@import '../../apps/mail/assets/cmps/create-mail.css';
+@import '../../apps/mail/assets/cmps/mail-draft.css';
+
+@import '../../apps/mail/assets/cmps/mail-filter.css';
+@import '../../apps/mail/assets/cmps/mail-draft.css';
+@import '../../apps/mail/assets/cmps/mail-header.css';
+@import '../../apps/mail/assets/cmps/mail-list.css';
+@import '../../apps/mail/assets/cmps/mail-nav.css';
+@import '../../apps/mail/assets/cmps/mail-preview.css';
+@import '../../apps/mail/assets/cmps/mail-trash.css';
+@import '../../apps/mail/assets/cmps/sent-mails.css';
+
+/* Note */
+@import '../../apps/note/assets/note-list.css';
+@import '../../apps/note/assets/add-note.css';
+@import '../../apps/note/assets/note-filter.css';
+@import '../../apps/note/assets/note-header.css';
+@import '../../apps/note/assets/note-nav.css';
+@import '../../apps/note/assets/note-preview.css';
+@import '../../apps/note/assets/pinned-note.css';
+@import '../../apps/note/assets/viwes/note-index.css';
