@@ -1,0 +1,27 @@
+.note-text-container {
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgb(207, 237, 227);
+    width: fit-content;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1em;
+}
+
+.note-text {
+    font-size: 1.1rem;
+    margin-top: 5px;
+    font-family: open-sans;
+    padding: 16px;
+    overflow: hidden;
+    border: none;
+    letter-spacing: 1px;
+    resize: none;
+    outline: none;
+    background-color: inherit;
+}
+
+.note-text-container:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+}

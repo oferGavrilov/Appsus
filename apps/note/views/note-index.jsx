@@ -15,29 +15,38 @@ export function NoteIndex() {
         loadNotes()
     }, [filterBy])
 
-    // console.log('notes' , notes)
     function loadNotes() {
         noteService.query(filterBy).then(notes => setNotes(notes))
     }
 
     function onSetFilter(filterBy) {
-        // console.log('filterBy' , filterBy)
         setFilterBy(filterBy)
     }
 
     function onSaveNote(noteToSave) {
-        // console.log('onSaveNote', noteToSave)
-        // noteService.save(noteToSave)
-        //     .then((note) => {
-        //         const notes = [note , ...notes]
-        //         setNotes({...notes })
-        //     })
+        noteService.save(noteToSave)
+            .then((note) => {
+                const newNotes = [ ...notes , note]
+                setNotes(newNotes)
+            })
     }
+
+    function onRemoveNote(noteId) {
+        // console.log(noteId)
+        noteService.remove(noteId)
+           .then(() => {
+            const newNotes = notes.filter(note => note.id !== noteId)
+            setNotes(newNotes)
+           })
+    }
+    
 
     return <section className='note-index'>
         <NoteFilter onSetFilter={onSetFilter} />
-        <AddNote onSaveNote={onSaveNote}/>
-        <NoteList notes={notes} />
+
+        <AddNote onSaveNote={onSaveNote} />
+
+        <NoteList notes={notes} onRemoveNote={onRemoveNote} />
     </section>
 
 }
