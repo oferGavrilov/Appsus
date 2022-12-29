@@ -55,8 +55,3 @@
 // Filtering cmp
 
 
-{/* <div className='read-mail'>
-    {<i onClick={onToggleRead} {mail.isRead ?  className='unread fa-regular fa-envelope' title='Mark as unread'> :
-        :  class="fa-regular fa-envelope-open" title='Mark as read'></i>
-    }
-</div> */}

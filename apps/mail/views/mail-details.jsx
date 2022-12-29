@@ -39,7 +39,7 @@ export function MailDetails() {
     }
 
     function onDeleteMail() {
-        mailService.deleteMail(selectedMail)
+        mailService.move(selectedMail, 'trash')
             .then(res => {
                 console.log(res)
                 showSuccessMsg('Mail moved to Trash')

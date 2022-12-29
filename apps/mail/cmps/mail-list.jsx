@@ -1,17 +1,25 @@
 import { MailPreview } from './mail-preview.jsx'
+import { mailService } from '../services/mail.service.js'
 
-export function MailList({ mails, onSelectMail }) {
+export function MailList({ mails, onSelectMail, onDeleteMail, loadUnreadMailsCount }) {
 
-    function onDeleteMail(mailId) {
-        console.log('mailId:', mailId)
-    }
-
-    function onToggleRead(mail) {
+    function onToggleRead(ev, mail) {
+        ev.stopPropagation()
         console.log('mail:', mail)
+        mail.isRead = !mail.isRead
+        loadUnreadMailsCount(mails)
+        // Should consider doing it from mail index
+        mailService.save(mail)
+            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
+            .catch(err => console.log('Had trouble updating mail read at mail list', err))
     }
 
-    function onToggleStarred(mail) {
-
+    function onToggleStarred(ev, mail) {
+        ev.stopPropagation()
+        mail.isStarred = !mail.isStarred
+        mailService.save(mail)
+            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
+            .catch(err => console.log('Had trouble updating mail star at mail list', err))
     }
 
     return <section className='mail-list' >
