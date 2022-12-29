@@ -15,7 +15,9 @@ export const noteService = {
     loadNotesFromStorage,
     getUser,
     createEmptyNote,
-    updateNote
+    updateNote,
+    getColors,
+    changeColor
 }
 
 
@@ -40,11 +42,36 @@ function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
+function changeColor(noteId , color) {
+    const notes = loadNotesFromStorage()
+    const noteToChange = notes.find(note => note.id === noteId)
+    noteToChange.backgroundColor = color
+    saveNotesToStorage(notes)
+    return Promise.resolve(noteToChange)
+}
+
 function getUser() {
     return {
         email: 'momo@appsus.com',
         fullname: 'Momo Ben Momo'
     }
+}
+
+function getColors() {
+    return [
+        '#FFFFFF',
+        '#F28B82',
+        '#FBBC04',
+        '#FFF475',
+        '#CCFF90',
+        '#A7FFEB',
+        '#CBF0F8',
+        '#F1E4DE',
+        '#D7AEFB',
+        '#FDCFE8',
+        '#E6C9A8',
+        '#E8EAED',
+    ]
 }
 
 function save(note) {
@@ -66,7 +93,7 @@ function getDefaultFilter() {
 
 function getEmptyNote() {
     return {
-        type: 'note-txt',
+        type: '',
         isPinned: false,
         info: {
             txt: ''
@@ -91,7 +118,8 @@ function createEmptyNote() {
         //     txt: '',
         // }
         txt:'',
-        url:''
+        url:'',
+        backgroundColor:'#fff'
     }
 }
 
@@ -108,7 +136,8 @@ function _createNotes() {
                 // info: {
                 //     txt: "Working on Appsus!"
                 // }
-                txt:"Working on Appsus!"
+                txt:"Working on Appsus!",
+                backgroundColor:'#fff'
             },
              {
                 id: "n102",
@@ -117,7 +146,9 @@ function _createNotes() {
                 // info: {
                 //     txt: "Need to sleep!"
                 // }
-                txt:"Need to sleep!"
+                txt:"Need to sleep!",
+                backgroundColor:'#fff'
+
             },
              {
                 id: "n103",
@@ -126,17 +157,33 @@ function _createNotes() {
                 // info: {
                 //     txt: "Alex the greatest metargel!"
                 // }
-                txt:"Alex the greatest metargel!"
+                txt:"Alex the greatest metargel!",
+                backgroundColor:'#fff'
+
             },
-            //  {
-            //     id: "n104",
-            //     type: "note-img",
-            //     isPinned: false,
-            //     // info: {
-            //     //     txt: "Alex the greatest metargel!"
-            //     // }
-            //     txt:"Alex the greatest metargel!"
-            // },
+             {
+                id: "n104",
+                type: "note-txt",
+                isPinned: false,
+                // info: {
+                //     txt: "Alex the greatest metargel!"
+                // }
+                txt:"render the notes when color is changed",
+                backgroundColor:'#fff'
+
+            },
+             {
+                id: "n105",
+                type: "note-img",
+                isPinned: false,
+                // info: {
+                //     txt: "Alex the greatest metargel!"
+                // }
+                txt:"Alex the greatest metargel!",
+                url:"http://coding-academy.org/books-photos/14.jpg",
+                backgroundColor:'#fff'
+
+            },
         ]
         saveNotesToStorage(notes)
     }

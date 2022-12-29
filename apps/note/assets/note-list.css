@@ -1,6 +1,9 @@
-/* .note-list{
-    background-color: lightblue;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-
-} */
+.note-list{
+    width: 80%;
+    column-width: 240px;
+    column-count: auto;
+    /* gap: 1px; */
+    margin-top: 2rem;
+    margin: auto;
+    /* padding-bottom: 30px; */
+}

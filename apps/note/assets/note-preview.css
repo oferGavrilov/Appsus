@@ -1,4 +1,4 @@
-/* .note-preview {
+ .note-preview {
     position: relative;
     min-height: 100px;
     display: flex;
@@ -8,7 +8,7 @@
 
     break-inside: avoid-column;
 }
-
+/*
 .buttons-container {
     display: flex;
     justify-content: space-between;
