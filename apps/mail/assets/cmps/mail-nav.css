@@ -1,4 +1,9 @@
 .mail-nav {
     display: flex;
+    width: 300px;
     flex-direction: column;
+}
+
+.mail-nav i {
+    margin-right: 10px;
 }

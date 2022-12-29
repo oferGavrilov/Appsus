@@ -5,11 +5,23 @@
 
 .mail-details-container {
     display: grid;
-    grid-template-columns: .5fr .5fr 1fr;
-    grid-template-rows: .5fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    /* grid-template-rows: .5fr 1fr; */
     gap: 10px;
 }
 
-.mail-details-body {
-    grid-area: 2/2/3/4;
+.mail-details-actions>* {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.mail-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mail-details-container {
+    width: 75%;
+    margin: 0 auto;
 }

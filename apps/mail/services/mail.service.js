@@ -14,7 +14,8 @@ export const mailService = {
     saveMailsToStorage,
     loadMailsFromStorage,
     getUser,
-    getUnreadMailsCount
+    getUnreadMailsCount,
+    deleteMail
 }
 
 
@@ -75,6 +76,13 @@ function save(mail) {
     } else {
         return storageService.post(MAIL_KEY, mail)
     }
+}
+
+function deleteMail(mail) {
+    if (mail.status === 'trash') return remove(mail.id)
+    mail.status = 'trash'
+    mail.removedAt = Date.now()
+    return storageService.put(MAIL_KEY, mail)
 }
 
 function getDefaultFilter() {
@@ -254,7 +262,7 @@ function _createMails() {
                 Thank you, Momo`,
                 isRead: true,
                 sentAt: (Date.now() - 1500),
-                status: 'sent',
+                status: 'trash',
                 to: 'greener@appsus.com',
                 from: 'momo@appsus.com'
             },

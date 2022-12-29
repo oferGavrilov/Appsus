@@ -3,7 +3,7 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 
 import { MailNav } from '../cmps/mail-nav.jsx'
 import { mailService } from '../services/mail.service.js'
-import { showErrorMsg } from '../../../services/event-bus.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 export function MailDetails() {
@@ -38,14 +38,35 @@ export function MailDetails() {
         navigate('/mail')
     }
 
+    function onDeleteMail() {
+        mailService.deleteMail(selectedMail)
+            .then(res => {
+                console.log(res)
+                showSuccessMsg('Mail moved to Trash')
+            })
+            .catch(err => {
+                console.log('Had trouble with deleting mail in mail-details', err)
+                showErrorMsg('Failed to remove mail')
+            })
+            .finally(onGoBack)
+    }
+
     if (!selectedMail) return <h2>Loading</h2>
     return <section className='mail-details'>
 
-        <div className='mail-details-actions'><i onClick={onGoBack} title='Back to Inbox'>&lt;-</i></div>
+        <div className='mail-details-actions'>
+            <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
+            <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
+            <i className='move-mail fa-regular fa-folder' title='Move to'></i>
+            <i className='unread fa-regular fa-envelope' title='Mark as unread'></i>
+        </div>
         <div className="mail-details-container">
-            <MailNav />
             <div className='mail-details-subject'>{selectedMail.subject}</div>
-            <div>{utilService.getFormattedDate(selectedMail.sentAt)}</div>
+            <header className='mail-details-header'>
+                <h4 className='sent-from'>{selectedMail.from}</h4>
+                <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
+                <button>⭐</button>
+            </header>
             <main className='mail-details-body'>
                 {selectedMail.body}
             </main>

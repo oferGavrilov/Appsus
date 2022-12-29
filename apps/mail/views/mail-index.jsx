@@ -23,15 +23,25 @@ export function MailIndex() {
         loadMails()
     }, [])
 
+    useEffect(() => {
+        loadUnreadMailsCount()
+    }, [mails])
+
     function loadMails() {
         mailService.query()
             .then(mails => {
                 setMails(mails)
-                setUnreadMailsCount(mailService.getUnreadMailsCount(mails, 'inbox'))
-                setIsLoading(false)
                 console.log('mails:', mails)
             })
+            .catch(err => console.log('Had trouble with loading mails in mail-index(loadMails)', err))
     }
+
+    function loadUnreadMailsCount() {
+        if (!mails.length) return
+        setUnreadMailsCount(mailService.getUnreadMailsCount(mails, 'inbox'))
+        setIsLoading(false)
+    }
+
 
     function onSelectMail(mailId) {
         navigate(`/mail/${mailId}`)
@@ -60,11 +70,11 @@ export function MailIndex() {
             <MailHeader />
             <MailFilter />
         </section>
-        {isLoading && <h2>Loading..</h2>}
-        {!isLoading && <main className='mail-main-content'>
-            <MailNav unreadMailsCount={unreadMailsCount} />
-            <MailList mails={mails} onSelectMail={onSelectMail} />
-        </main>}
+        {isLoading ? <h2>Loading..</h2>
+            : <main className='mail-main-content'>
+                <MailNav unreadMailsCount={unreadMailsCount} />
+                <MailList mails={mails} onSelectMail={onSelectMail} />
+            </main>}
 
         {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
 
