@@ -1,12 +1,9 @@
-// import { noteService } from "../services/note.service.js"
 import { NoteImg } from "./note-img.jsx"
 import { NoteText } from "./note-text.jsx"
+import { NoteVideo } from "./note-video.jsx"
 
-// const {useState ,useEffect} = React
 
 export function NotePreview(props) {
-    // const [cmpType , setCmpType] = useState(null)
-    // const [noteEdit , setNoteEdit] = useState(null)
 
 
     function dynamicCmp() {
@@ -15,8 +12,8 @@ export function NotePreview(props) {
                 return <NoteText {...props } />
             case 'note-img':
                 return <NoteImg {...props } />
-            // case 'note-video':
-            //     return <NoteVideo {...props} />
+            case 'note-video':
+                return <NoteVideo {...props} />
             // case 'note-todos':
             //     return <NoteTodos {...props} />
         }

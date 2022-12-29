@@ -2,7 +2,7 @@ import { NoteTools } from "./note-tools.jsx"
 
 const {useState} = React
 
-export function NoteImg({ note, onRemoveNote, onChangeColor , onEditText}) {
+export function NoteImg({ note, onRemoveNote, onChangeColor , onEditText , onDuplicateNote}) {
     // console.log('imgNote', note)
     const [noteText , setNoteText] = useState(note.txt)
 
@@ -27,7 +27,7 @@ export function NoteImg({ note, onRemoveNote, onChangeColor , onEditText}) {
              onBlur={() => onEditText(note , noteText)} >{note.txt}</p>
 
 
-            <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} />
+            <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onDuplicateNote={onDuplicateNote} />
         </div>
     </div>
 }

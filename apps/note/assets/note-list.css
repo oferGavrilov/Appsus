@@ -1,10 +1,29 @@
-.note-list{
-    width: 80%;
-    column-width: 240px;
-    column-count: auto;
+.note-list {
+    width: 100%;
+    /* column-width: 240px; */
+    column-count: 2;
     /* gap: 1px; */
     /* margin-top: 2rem; */
-    margin: auto;
+    margin: 0 auto;
     padding: 2rem;
     /* padding-bottom: 30px; */
+}
+
+@media (min-width: 980px) {
+    .note-list {
+        column-count: 3;
+    }
+
+}
+
+@media (min-width: 1290px) {
+    .note-list {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1550px) {
+    .note-list {
+        column-count: 5;
+    }
 }

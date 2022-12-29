@@ -3,7 +3,7 @@ import { NoteTools } from "./note-tools.jsx"
 
 const { useState } = React
 
-export function NoteText({ note, onRemoveNote, onChangeColor , onEditText }) {
+export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDuplicateNote}) {
 
   const [noteText, setNoteText] = useState(note.txt)
 
@@ -35,6 +35,6 @@ export function NoteText({ note, onRemoveNote, onChangeColor , onEditText }) {
     >
       {noteText}
     </textarea>
-    <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} />
+    <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onDuplicateNote={onDuplicateNote} />
   </div>)
 }

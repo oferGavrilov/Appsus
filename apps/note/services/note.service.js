@@ -1,5 +1,5 @@
 import { storageService } from '../../../services/async-storage.service.js'
-
+import { utilService} from '../../../services/util.service.js'
 
 const NOTE_KEY = 'noteDB'
 _createNotes()
@@ -17,7 +17,8 @@ export const noteService = {
     createEmptyNote,
     updateNote,
     getColors,
-    changeColor
+    changeColor,
+    duplicateNote
 }
 
 
@@ -31,7 +32,6 @@ function query(filterBy = getDefaultFilter()) {
             }
             return notes
         })
-    // TODO: consider what filter by key is general
 }
 
 function get(noteId) {
@@ -48,6 +48,16 @@ function changeColor(noteId , color) {
     noteToChange.backgroundColor = color
     saveNotesToStorage(notes)
     return Promise.resolve(notes)
+}
+
+function duplicateNote(noteId) {
+    const notes = loadNotesFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    const copyNote = {...note }
+    copyNote.id = utilService.makeId()
+    notes.unshift(copyNote)
+    saveNotesToStorage(notes)
+    return Promise.resolve(copyNote)
 }
 
 function getUser() {
@@ -181,6 +191,18 @@ function _createNotes() {
                 // }
                 txt:"Alex the greatest metargel!",
                 url:"http://coding-academy.org/books-photos/14.jpg",
+                backgroundColor:'#fff'
+
+            },
+             {
+                id: "n106",
+                type: "note-video",
+                isPinned: false,
+                // info: {
+                //     txt: "Alex the greatest metargel!"
+                // }
+                txt:"Alex the greatest metargel!",
+                url:'https://www.youtube.com/embed/nhBVL41-_Cw',
                 backgroundColor:'#fff'
 
             },

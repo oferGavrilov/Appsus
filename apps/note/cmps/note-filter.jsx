@@ -1,14 +1,9 @@
 import { noteService } from "../services/note.service.js"
 
-const {useState , useEffect} = React
-
-
+const {useState } = React
 
 export function NoteFilter({onSetFilter}) {
     const [filterByToEdit , setFilterByToEdit] = useState(noteService.getDefaultFilter())
-
-
-
 
     function handleChange({target}) {
         let {value, name:field} = target
@@ -21,10 +16,6 @@ export function NoteFilter({onSetFilter}) {
         ev.preventDefault()
         onSetFilter(filterByToEdit)
     }
-
-
-
-
 
     return <section className="note-filter">
         <form onSubmit={onSubmitFilter}>

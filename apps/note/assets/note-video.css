@@ -1,0 +1,27 @@
+.note-video-area {
+    border: 1px solid rgb(227, 221, 221);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: white;
+
+    border-top: none;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.note-video-container:hover .buttons-container button {
+    opacity: 1;
+}
+
+.note-video-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin: 0;
+    outline: none;
+}
+
+.note-video-container{
+    max-width: 290px;
+}

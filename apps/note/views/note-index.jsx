@@ -1,11 +1,11 @@
-const { useState, useEffect } = React
 
-
+import {showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { AddNote } from '../cmps/add-note.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteList } from '../cmps/note-list.jsx'
 import { noteService } from '../services/note.service.js'
 
+const { useState, useEffect } = React
 
 export function NoteIndex() {
     const [notes, setNotes] = useState([])
@@ -27,6 +27,7 @@ export function NoteIndex() {
         noteService.save(noteToSave)
             .then((note) => {
                 const newNotes = [...notes, note]
+                showSuccessMsg('Note saved successfully')
                 setNotes(newNotes)
             })
     }
@@ -47,9 +48,16 @@ export function NoteIndex() {
     }
 
     function onEditText(note , noteText ) {
-        // console.log('save change' , note , noteText)
         note.txt = noteText
         noteService.updateNote(note)
+    }
+
+    function onDuplicateNote(noteId) {
+        noteService.duplicateNote(noteId)
+            .then((note) => {
+                const newNotes = [...notes , note]
+                setNotes(newNotes)
+            })
     }
 
     return <section className='note-index'>
@@ -57,7 +65,7 @@ export function NoteIndex() {
 
         <AddNote onSaveNote={onSaveNote} />
 
-        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} />
+        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} onDuplicateNote={onDuplicateNote}/>
     </section>
 
 }
