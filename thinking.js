@@ -54,4 +54,19 @@
 // Sent,Drafts,Trash,Starred, Labels cmps
 // Filtering cmp
 
+// Fix loading state
+// Fix mail funcs at other sections
+// add filter into string params
+// add filter and sort options
+// fix formatted time func
+// fix user msg - maybe add buttons for removing/moving to that section
+// Add debounce for email composing more than 5 secs(maybe also at search)
+// Improve filtering funcs at service/mail-filter
+// Support email labeling
+// Make delete,mark,star,label reusable for both details and index(cmp)
+// Check how to dynamically limit body text
+// support custom nav bar
+// Intergration
+
+
 

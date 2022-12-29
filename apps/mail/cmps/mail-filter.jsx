@@ -1,11 +1,10 @@
-const { useState, useEffect } = React
 import { mailService } from '../services/mail.service.js'
 
+const { useState, useEffect } = React
 
 export function MailFilter({ onSetFilter }) {
 
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
-
 
     function handleChange({ target }) {
         let { value, name: field, type, checked } = target
@@ -17,7 +16,6 @@ export function MailFilter({ onSetFilter }) {
         onSetFilter(filterBy)
         console.log('filterBy:', filterBy)
     }
-
 
     return <section className='mail-filter'>
         <div>
