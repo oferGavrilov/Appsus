@@ -4,10 +4,7 @@ import { MailPreview } from './mail-preview.jsx'
 export function MailList({ mails, onSelectMail }) {
 
     return <section className='mail-list' >
-        {mails.map(mail =>
-            <Fragment key={mail.id}>
-                <MailPreview mail={mail} onSelectMail={onSelectMail} />
-            </Fragment>
+        {mails.map(mail => <MailPreview key={mail.id} mail={mail} onSelectMail={onSelectMail} />
         )}
     </section>
 

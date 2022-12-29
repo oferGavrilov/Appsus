@@ -1,0 +1,15 @@
+.mail-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-details-container {
+    display: grid;
+    grid-template-columns: .5fr .5fr 1fr;
+    grid-template-rows: .5fr 1fr;
+    gap: 10px;
+}
+
+.mail-details-body {
+    grid-area: 2/2/3/4;
+}

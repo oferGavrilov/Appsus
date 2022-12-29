@@ -35,6 +35,14 @@ function query(filterBy = getDefaultFilter()) {
                 mails = mails.filter(mail => mail.isRead)
             }
 
+            if (filterBy.isStarred) {
+                mails = mails.filter(mail => mail.isStarred)
+            }
+
+            if (filterBy.labels.length) {
+                mails = mails.filter(mail => filterBy.labels.find(label => mail.labels.includes(label)))
+            }
+
             return mails
         })
 }
@@ -47,9 +55,9 @@ function remove(mailId) {
     return storageService.remove(MAIL_KEY, mailId)
 }
 
-function getUnreadMailsCount(mails) {
+function getUnreadMailsCount(mails, status) {
     return mails.reduce((acc, mail) => {
-        if (!mail.isRead) acc++
+        if (!mail.isRead && mail.status === status) acc++
         return acc
     }, 0)
 }
@@ -72,7 +80,10 @@ function save(mail) {
 function getDefaultFilter() {
     return {
         status: 'inbox',
-        txt: ''
+        txt: '',
+        isRead: false,
+        isStarred: false,
+        labels: []
     }
 }
 
@@ -85,7 +96,9 @@ function getEmptyMail() {
         removedAt: null,
         from: 'momo@appsus.com',
         to: '',
-        status: 'sent'
+        status: 'sent',
+        isStarred: false,
+        labels: []
     }
 }
 

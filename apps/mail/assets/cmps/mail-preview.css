@@ -1,11 +1,19 @@
 .mail-preview {
-    border-block: 0.1px rgb(128, 128, 128) solid;
+    /* box-shadow: -0.2px 0px 5px rgb(128 128 128); */
+    box-shadow: -0.2px 0px 5px rgb(0 0 0 / 20%);
     display: grid;
-    grid-template-columns: .5fr 1fr;
+    grid-template-columns: .1fr .5fr 1fr .5fr;
 }
 
 .mail-preview.read {
     background: rgba(179, 200, 207, 0.31);
+}
+
+.mail-preview:hover {
+    box-shadow:
+        inset 1px 0 0 #dadce0,
+        inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%),
+        0 1px 3px 1px rgb(60 64 6)
 }
 
 .mail-subject {

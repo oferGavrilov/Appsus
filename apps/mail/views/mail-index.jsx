@@ -27,7 +27,7 @@ export function MailIndex() {
         mailService.query()
             .then(mails => {
                 setMails(mails)
-                setUnreadMailsCount(mailService.getUnreadMailsCount(mails))
+                setUnreadMailsCount(mailService.getUnreadMailsCount(mails, 'inbox'))
                 setIsLoading(false)
                 console.log('mails:', mails)
             })
@@ -47,6 +47,10 @@ export function MailIndex() {
                 console.log('Had trouble sending mail in compose mail', err)
                 showErrorMsg('Failed to send mail')
             })
+        onDoneComposing()
+    }
+
+    function onDoneComposing() {
         setIsComposingOn(false)
     }
 
@@ -62,7 +66,7 @@ export function MailIndex() {
             <MailList mails={mails} onSelectMail={onSelectMail} />
         </main>}
 
-        {isComposingOn && <ComposeMail onSendMail={onSendMail} />}
+        {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
 
     </section>
 }

@@ -48,7 +48,9 @@
 
 
 // MAIL - TODO
- 
-// Filter: isStared: true, // (optional property, if missing: show all)
-//  lables: ['important', 'romantic'] // has any of the labels
+// First prio - css
+// Fix names - email instead of mails
+// Add email functions - Formatted date, delete, unread
+// Sent,Drafts,Trash,Starred, Labels cmps
+// Filtering cmp
 

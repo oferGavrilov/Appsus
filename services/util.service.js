@@ -66,6 +66,10 @@ function getMonthName(date) {
     return monthNames[date.getMonth()]
 }
 
-function getFormattedDate() {
-
+function getFormattedDate(timeStamp) {
+    const date = new Date(timeStamp)
+    const month = getMonthName(date).slice(0, 3)
+    const dateNum = date.getDate()
+    const dateStr = getDayName(date)
+    return `${month} ${dateNum}`
 }

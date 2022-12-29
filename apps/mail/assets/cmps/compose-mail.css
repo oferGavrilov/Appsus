@@ -1,12 +1,16 @@
-.compose-mail.small {
+.compose-mail {
     position: absolute;
     width: 30vw;
-    height: min-content;
     bottom: 0px;
     left: 20px;
+    z-index: 1;
     box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%),
         0px 3px 14px 2px rgb(0 0 0 / 12%),
         0px 5px 5px -3px rgb(0 0 0 / 20%);
+}
+
+.compose-mail.small {
+    height: min-content;
 }
 
 .compose-mail.large {
