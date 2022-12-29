@@ -9,7 +9,7 @@ export function NoteColor({ note, onChangeColor }) {
         {colors.map((color, idx) => {
             return(
 
-                <span className="color-ball"
+                <span className="color-pick"
                 key={idx}
                 style={{ backgroundColor: color }}
                 onClick={() => onChangeColor(note , color)}

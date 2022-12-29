@@ -3,7 +3,8 @@
     column-width: 240px;
     column-count: auto;
     /* gap: 1px; */
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     margin: auto;
+    padding: 2rem;
     /* padding-bottom: 30px; */
 }

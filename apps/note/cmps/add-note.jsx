@@ -9,7 +9,7 @@ export function AddNote({ onSaveNote }) {
     const [noteType, setNoteType] = useState(null)
 
     function handleChange({ target }) {
-        let { value, name: field } = target
+        let { value, name: field  } = target
         setNoteToAdd((prevNote) => {
             return { ...prevNote, [field]: value }
         })
@@ -17,8 +17,12 @@ export function AddNote({ onSaveNote }) {
 
     function onSubmitNote(ev) {
         ev.preventDefault()
-        // if(!noteToAdd.txt) return 
         noteToAdd.type = noteType
+        
+        const {type , txt , url} = noteToAdd
+        if(type === "note-txt" && !txt || type === "note-img" && ! url) return
+
+        // if(!noteToAdd.txt) return
         onSaveNote(noteToAdd)
         setNoteToAdd(noteService.createEmptyNote())
     }
@@ -26,7 +30,7 @@ export function AddNote({ onSaveNote }) {
     function onChangeType(ev) {
         ev.preventDefault()
         const type = ev.target.value
-        console.log(type)
+
         setNoteType(type)
     }
 
@@ -55,7 +59,7 @@ export function AddNote({ onSaveNote }) {
                         onChange={handleChange} />
                 </div>
             }
-            <button>Create</button>
+            {noteType &&<button>Create</button>}
         </form>
         <NoteTypeBtns onChangeType={onChangeType} />
     </section>

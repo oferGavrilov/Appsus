@@ -1,12 +1,12 @@
 
 import { NotePreview } from "./note-preview.jsx"
 
-export function NoteList({notes , onRemoveNote }) {
+export function NoteList({notes , onRemoveNote , onChangeColor , onEditText}) {
     // console.log(notes)
     return <div className='note-list'>
         {
             notes.map(note => <div key={note.id}> 
-                <NotePreview note={note} onRemoveNote={onRemoveNote}/>
+                <NotePreview note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText}/>
                 
                 </div>)
 

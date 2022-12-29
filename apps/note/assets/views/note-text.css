@@ -4,8 +4,8 @@
 
     /* background-color: #cfede3; */
     width: fit-content;
-    padding: 1rem;
-    margin: 1rem;
+    padding: 1rem 2rem;
+    /* margin: 1rem; */
     border-radius: 1em;
     border: 1px solid lightgray;
 }
