@@ -1,4 +1,6 @@
-.note-tools {}
+/* .buttons-container{
+    margin-top: 16px;
+} */
 
 .buttons-container>button {
     background-color: unset;
@@ -31,7 +33,7 @@
     padding: 10px;
 }
 
-.color-ball {
+.color-pick {
     cursor: pointer;
     display: block;
     width: 25px;

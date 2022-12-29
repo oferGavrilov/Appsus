@@ -10,7 +10,6 @@ export function NoteTools({ note, onRemoveNote , onChangeColor }) {
 
     const [togglePlate , setTogglePlate] = useState(false)
 
-    console.log(togglePlate)
     return <div className="note-tools">
         <div className="buttons-container">
             <button className='fa-regular fa-trash-can' onClick={() => onRemoveNote(note.id)}></button>

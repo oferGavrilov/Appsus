@@ -1,16 +1,16 @@
-import { noteService } from "../services/note.service.js"
+// import { noteService } from "../services/note.service.js"
 import { NoteTools } from "./note-tools.jsx"
 
-const { useState, useEffect } = React
+const { useState } = React
 
-export function NoteText({ note, onRemoveNote, onChangeColor }) {
+export function NoteText({ note, onRemoveNote, onChangeColor , onEditText }) {
 
   const [noteText, setNoteText] = useState(note.txt)
 
 
   function changeHandle({ target }) {
     const { value } = target
-    console.log(value)
+    // console.log(value)
     setNoteText(value)
   }
 
@@ -19,18 +19,18 @@ export function NoteText({ note, onRemoveNote, onChangeColor }) {
     target.style.height = `${target.scrollHeight}px`
   }
 
-  function onSaveChange() {
-    note.txt = noteText
-    noteService.updateNote(note)
-  }
+  // function onSaveChange() {
+  //   note.txt = noteText
+  //   noteService.updateNote(note)
+  // }
 
   return (<div className="note-text-container" style={{ backgroundColor: note.backgroundColor }}>
     <textarea
       onChange={changeHandle}
       value={noteText}
       
-      onInput={onResize}
-      onBlur={onSaveChange}
+      onClick={onResize}
+      onBlur={() => onEditText(note , noteText)}
       className='note-text'
     >
       {noteText}

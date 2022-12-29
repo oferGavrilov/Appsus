@@ -1,4 +1,4 @@
-const {useState , useEffect} = React
+const { useState, useEffect } = React
 
 
 import { AddNote } from '../cmps/add-note.jsx'
@@ -8,8 +8,8 @@ import { noteService } from '../services/note.service.js'
 
 
 export function NoteIndex() {
-    const [notes , setNotes] = useState([])
-    const [filterBy , setFilterBy] = useState(noteService.getDefaultFilter())
+    const [notes, setNotes] = useState([])
+    const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
 
     useEffect(() => {
         loadNotes()
@@ -26,27 +26,38 @@ export function NoteIndex() {
     function onSaveNote(noteToSave) {
         noteService.save(noteToSave)
             .then((note) => {
-                const newNotes = [ ...notes , note]
+                const newNotes = [...notes, note]
                 setNotes(newNotes)
             })
     }
 
     function onRemoveNote(noteId) {
-        // console.log(noteId)
         noteService.remove(noteId)
-           .then(() => {
-            const newNotes = notes.filter(note => note.id !== noteId)
-            setNotes(newNotes)
-           })
+            .then(() => {
+                const newNotes = notes.filter(note => note.id !== noteId)
+                setNotes(newNotes)
+            })
     }
-    
+
+    function onChangeColor(note, color) {
+        noteService.changeColor(note.id, color)
+            .then((notes) => {
+                setNotes(notes)
+            })
+    }
+
+    function onEditText(note , noteText ) {
+        // console.log('save change' , note , noteText)
+        note.txt = noteText
+        noteService.updateNote(note)
+    }
 
     return <section className='note-index'>
         <NoteFilter onSetFilter={onSetFilter} />
 
         <AddNote onSaveNote={onSaveNote} />
 
-        <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} />
     </section>
 
 }

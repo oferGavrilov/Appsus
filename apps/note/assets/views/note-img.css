@@ -11,11 +11,12 @@
 .note-img-container {
   
 }
-.note-img-text{
+.note-img-area{
   border: 1px solid rgb(227, 221, 221);
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
 
   border-bottom-left-radius:1rem ;
   border-bottom-right-radius:1rem ;
@@ -29,3 +30,10 @@
   opacity: 1;
 }
 
+.note-img-text{
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem;
+  margin: 0;
+  outline: none;
+}

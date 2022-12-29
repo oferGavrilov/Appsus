@@ -47,7 +47,7 @@ function changeColor(noteId , color) {
     const noteToChange = notes.find(note => note.id === noteId)
     noteToChange.backgroundColor = color
     saveNotesToStorage(notes)
-    return Promise.resolve(noteToChange)
+    return Promise.resolve(notes)
 }
 
 function getUser() {
