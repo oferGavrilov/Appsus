@@ -1,4 +1,5 @@
 
+import { AppFilter } from '../../../cmps/app-filter.jsx'
 import {showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { AddNote } from '../cmps/add-note.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
@@ -61,7 +62,8 @@ export function NoteIndex() {
     }
 
     return <section className='note-index'>
-        <NoteFilter onSetFilter={onSetFilter} />
+        {/* <NoteFilter onSetFilter={onSetFilter} /> */}
+        {/* <AppFilter onSetFilter={onSetFilter} /> */}
 
         <AddNote onSaveNote={onSaveNote} />
 

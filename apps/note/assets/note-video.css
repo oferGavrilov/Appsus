@@ -4,10 +4,15 @@
     flex-direction: column;
     padding: 1rem;
     background-color: white;
+    border-bottom-left-radius:1rem ;
+    border-bottom-right-radius:1rem ;
 
     border-top: none;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
+}
+
+.note-video-container iframe {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 .note-video-container:hover .buttons-container button {
@@ -20,6 +25,7 @@
     padding: 1rem;
     margin: 0;
     outline: none;
+    
 }
 
 .note-video-container{

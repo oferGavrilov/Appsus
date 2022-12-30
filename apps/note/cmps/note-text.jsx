@@ -28,7 +28,7 @@ export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDu
     <textarea
       onChange={changeHandle}
       value={noteText}
-      
+      onInput={onResize}
       onClick={onResize}
       onBlur={() => onEditText(note , noteText)}
       className='note-text'

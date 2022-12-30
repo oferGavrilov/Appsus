@@ -18,7 +18,8 @@ export const noteService = {
     updateNote,
     getColors,
     changeColor,
-    duplicateNote
+    duplicateNote,
+    getDefaultTodo
 }
 
 
@@ -101,6 +102,14 @@ function getDefaultFilter() {
     return { txt: '' }
 }
 
+function getDefaultTodo() {
+    return [
+        {
+            txt:''
+        }
+    ]
+}
+
 function getEmptyNote() {
     return {
         type: '',
@@ -129,6 +138,7 @@ function createEmptyNote() {
         // }
         txt:'',
         url:'',
+        todos: [],
         backgroundColor:'#fff'
     }
 }
@@ -205,6 +215,27 @@ function _createNotes() {
                 url:'https://www.youtube.com/embed/nhBVL41-_Cw',
                 backgroundColor:'#fff'
 
+            },
+             {
+                id: "n107",
+                type: "note-todos",
+                isPinned: false,
+                txt:"Alex the greatest metargel!",
+                backgroundColor:'#fff',
+                // info: {
+                //     txt: "Alex the greatest metargel!"
+                // }
+                todos:[
+                    {
+                        txt:'Something todo',
+                        isDone:false,
+                    },
+                    {
+
+                        txt:'Something todo',
+                        isDone:false,
+                    },
+                ],
             },
         ]
         saveNotesToStorage(notes)

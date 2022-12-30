@@ -1,5 +1,6 @@
 .note-list {
-    width: 100%;
+    /* width: 100%; */
+    width: fit-content;
     /* column-width: 240px; */
     column-count: 2;
     /* gap: 1px; */
@@ -22,7 +23,7 @@
     }
 }
 
-@media (min-width: 1550px) {
+@media (min-width: 1600px) {
     .note-list {
         column-count: 5;
     }

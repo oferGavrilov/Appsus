@@ -1,4 +1,5 @@
 import { noteService } from "../services/note.service.js"
+import { CreateTodos } from "./create-todos.jsx"
 import { NoteTypeBtns } from "./note-type-btns.jsx"
 
 const { useState } = React
@@ -9,6 +10,7 @@ export function AddNote({ onSaveNote }) {
     const [noteType, setNoteType] = useState(null)
 
     function handleChange({ target }) {
+        console.log(target)
         let { value, name: field } = target
         setNoteToAdd((prevNote) => {
             return { ...prevNote, [field]: value }
@@ -45,6 +47,7 @@ export function AddNote({ onSaveNote }) {
                     name="txt"
                     placeholder="Take a note..."
                     value={noteToAdd.txt}
+                    autoComplete = 'off'
                     autoFocus
                     onChange={handleChange} />
             }
@@ -82,6 +85,9 @@ export function AddNote({ onSaveNote }) {
                         onChange={handleChange} />
 
                 </div>
+            }
+            {noteType === 'note-todos' &&
+                    <CreateTodos handleChange={handleChange} />
             }
             {noteType && <button>Create</button>}
         </form>

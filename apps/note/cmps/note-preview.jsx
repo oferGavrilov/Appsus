@@ -1,5 +1,6 @@
 import { NoteImg } from "./note-img.jsx"
 import { NoteText } from "./note-text.jsx"
+import { NoteTodos } from "./note-todos.jsx"
 import { NoteVideo } from "./note-video.jsx"
 
 
@@ -14,8 +15,8 @@ export function NotePreview(props) {
                 return <NoteImg {...props } />
             case 'note-video':
                 return <NoteVideo {...props} />
-            // case 'note-todos':
-            //     return <NoteTodos {...props} />
+            case 'note-todos':
+                return <NoteTodos {...props} />
         }
     }    
 
