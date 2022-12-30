@@ -1,6 +1,5 @@
 import { storageService } from '../../../services/async-storage.service.js'
 
-
 const MAIL_KEY = 'mailDB'
 _createMails()
 
@@ -20,13 +19,14 @@ export const mailService = {
     setMailsSort
 }
 
-
 function query(filterBy = getDefaultFilter()) {
 
     return storageService.query(MAIL_KEY)
         .then(mails => {
 
-            if (filterBy.status) {
+            if (filterBy.status === 'starred') {
+                mails = mails.filter(mail => mail.isStarred)
+            } else {
                 mails = mails.filter(mail => mail.status === filterBy.status)
             }
 
@@ -82,17 +82,13 @@ function save(mail) {
 }
 
 function deleteMail(mail) {
-    if (mail.status === 'trash') return remove(mail.id)
+    if (mail.status === 'trash') return remove(mail.id).then(() => mail)
     mail.status = 'trash'
     mail.removedAt = Date.now()
     return storageService.put(MAIL_KEY, mail)
 }
 
-function move(mail, moveTo, isDuplicate = false) {
-    // if (isDuplicate) {
-    //     mailDup = { ...mail, status: moveTo }
-    //     return storageService.post(MAIL_KEY, mail)
-    // }
+function move(mail, moveTo) {
     mail.status = moveTo
     return storageService.put(MAIL_KEY, mail)
 }
@@ -108,14 +104,10 @@ function getDefaultFilter() {
 }
 
 function setMailsSort(mails, sortBy) {
-    console.log('sortBy:', sortBy)
-    console.log('mails:', mails)
     switch (sortBy) {
         case 'subject': return (mails.sort((m1, m2) => m1.subject.localeCompare(m2.subject)))
         case 'date': return (mails.sort((m1, m2) => m2.sentAt - m1.sentAt))
     }
-
-    // return mails
 }
 
 function getEmptyMail() {

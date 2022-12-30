@@ -4,7 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 export function MailPreview({ mail, onSelectMail, onDeleteMail, onToggleRead, onToggleStarred }) {
 
     return <section onClick={() => onSelectMail(mail.id)}
-        className={`mail-preview ${mail.isRead ? ' read' : ''}`}>
+        className={`mail-preview ${mail.isRead ? ' read' : ''}`} onMouseEnter={() => console.log('check')}>
         <div onClick={(ev) => onToggleStarred(ev, mail)} className='mail-star'>⭐</div>
         <div className='mail-subject'>{mail.subject}</div>
         <div className='mail-body'>{utilService.getTextToDisplay(mail.body, 40)}</div>

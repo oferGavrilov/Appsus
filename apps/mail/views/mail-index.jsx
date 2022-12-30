@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { useNavigate } = ReactRouterDOM
+const { useNavigate, useLocation } = ReactRouterDOM
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import { MailHeader } from '../cmps/mail-header.jsx'
@@ -19,11 +19,13 @@ export function MailIndex() {
     const [sortBy, setSortBy] = useState('')
     const [isComposingOn, setIsComposingOn] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
         setIsLoading(true)
+        console.log('location rendered')
         loadMails()
-    }, [filterBy])
+    }, [filterBy, location.pathname])
 
     useEffect(() => {
         loadUnreadMailsCount(mails)
@@ -31,22 +33,25 @@ export function MailIndex() {
 
     useEffect(() => {
         onSetSort()
-        console.log('state changed')
     }, [sortBy])
 
     function onDeleteMail(ev, mail) {
         ev.stopPropagation()
-        mailService.move(mail, 'trash')
+        mailService.deleteMail(mail)
             .then(deletedMail => {
                 const updatedMails = mails.filter(mail => mail.id !== deletedMail.id)
                 setMails(updatedMails)
             })
+            .catch(err => console.log('Had trouble deleting mail at mail index', err))
     }
 
     function loadMails() {
+        console.log('location.pathname:', location.pathname.slice(6))
+        filterBy.status = location.pathname.slice(6)
         mailService.query(filterBy)
             .then(mails => {
                 setMails(mails)
+                console.log('mails:', mails)
             })
             .catch(err => console.log('Had trouble with loading mails in mail-index(loadMails)', err))
     }
@@ -67,9 +72,8 @@ export function MailIndex() {
         setMails([...sortedMails])
     }
 
-
     function onSelectMail(mailId) {
-        navigate(`/mail/${mailId}`)
+        navigate(`/mail/inbox/${mailId}`)
     }
 
     function onSendMail(mail) {

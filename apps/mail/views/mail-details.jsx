@@ -35,7 +35,7 @@ export function MailDetails() {
     }
 
     function onGoBack() {
-        navigate('/mail')
+        navigate('/mail/inbox')
     }
 
     function onDeleteMail() {
