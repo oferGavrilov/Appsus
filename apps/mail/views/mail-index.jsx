@@ -118,28 +118,29 @@ export function MailIndex() {
 
 
     return <section className='mail-index'>
-        {/* <section className='mail-header-container'> */}
-        {/* <MailHeader /> */}
-        {/* <MailFilter onSetFilter={onSetFilter} /> */}
-        {/* <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button> */}
-        {/* <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button> */}
-        {/* </section> */}
-        {isLoading ? <h2>Loading..</h2>
-            : <main className='mail-main-content'>
-                <aside className='mail-nav-container'>
+        <section >
+            <MailFilter onSetFilter={onSetFilter} />
+            <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button>
+            <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button>
+        </section>
+        {
+            isLoading ? <h2>Loading..</h2>
+                : <main className='mail-main-content'>
+                    <aside className='mail-nav-container'>
 
-                    <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
-                        <i className="fa-solid fa-pencil compose-icon"></i>
-                        Compose</button>
+                        <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
+                            <i className="fa-solid fa-pencil compose-icon"></i>
+                            Compose</button>
 
-                    <MailNav unreadMailsCount={unreadMailsCount} />
-                </aside>
-                <MailList mails={mails} onSelectMail={onSelectMail}
-                    onDeleteMail={onDeleteMail} onToggleRead={onToggleRead} onToggleStarred={onToggleStarred} />
-            </main>}
+                        <MailNav unreadMailsCount={unreadMailsCount} />
+                    </aside>
+                    <MailList mails={mails} onSelectMail={onSelectMail}
+                        onDeleteMail={onDeleteMail} onToggleRead={onToggleRead} onToggleStarred={onToggleStarred} />
+                </main>
+        }
 
         {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
 
-    </section>
+    </section >
 }
 

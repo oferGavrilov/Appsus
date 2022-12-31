@@ -5,12 +5,14 @@
     gap: 10px;
     margin: 0 auto;
     /* font-family: roboto; */
+
 }
 
 
 .mail-main-content {
     display: grid;
     grid-template-columns: .7155fr 2.5fr;
+    /* margin-top: 64px; */
 }
 
 .btn-compose {
