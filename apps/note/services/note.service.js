@@ -19,7 +19,8 @@ export const noteService = {
     getColors,
     changeColor,
     duplicateNote,
-    getDefaultTodo
+    getDefaultTodo,
+    toggleCheck
 }
 
 
@@ -30,6 +31,10 @@ function query(filterBy = getDefaultFilter()) {
             if (filterBy.txt) {
                 const txtRegex = new RegExp(filterBy.txt, 'i')
                 notes = notes.filter(note => txtRegex.test(note.txt))
+            }
+            if(filterBy.type){
+                console.log('enter')
+                notes = notes.filter(note => note.type === filterBy.type)
             }
             return notes
         })
@@ -59,6 +64,15 @@ function duplicateNote(noteId) {
     notes.unshift(copyNote)
     saveNotesToStorage(notes)
     return Promise.resolve(copyNote)
+}
+
+function toggleCheck(idx , noteId) {
+    const notes = loadNotesFromStorage()
+    const note = notes.find(note => noteId === note.id)
+    note.todos[idx].isDone = !note.todos[idx].isDone
+    saveNotesToStorage(notes)
+    return Promise.resolve(notes)
+
 }
 
 function getUser() {
@@ -99,7 +113,7 @@ function updateNote(note) {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return { txt: '' , type:''}
 }
 
 function getDefaultTodo() {
@@ -232,7 +246,7 @@ function _createNotes() {
                     },
                     {
 
-                        txt:'Something todo',
+                        txt:'Something todo2',
                         isDone:false,
                     },
                 ],

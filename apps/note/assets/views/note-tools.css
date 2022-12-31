@@ -1,14 +1,11 @@
-/* .buttons-container{
-    margin-top: 16px;
-} */
 
 .buttons-container>button {
     background-color: unset;
     font-size: 1rem;
-    margin: 0 1rem;
-    /* padding: 0; */
+    margin: 0 .5rem;
     opacity: 0;
-    border-radius: 4em;    
+    border-radius: 4em; 
+    padding: 0.5em 0.8em;   
     transition: .3s;
 }
 .buttons-container > button:hover {
@@ -17,7 +14,6 @@
 .note-text-container:hover button {
     opacity: 1;
 }
-
 
 .color-palette {
     display: flex;

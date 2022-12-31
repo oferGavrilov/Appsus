@@ -8,7 +8,7 @@ export function AppHeader() {
     const location  = useLocation().pathname.slice(1,5)
 
     useEffect(() => {
-        console.log(location)
+        // console.log(location)
     }, [location])
 
     return <header className="app-header">

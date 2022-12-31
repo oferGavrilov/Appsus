@@ -9,7 +9,7 @@
   border-top-right-radius:1rem ;
 }
 .note-img-container {
-  max-width: 290px;
+  width: 300px;
 }
 .note-img-area{
   border: 1px solid rgb(227, 221, 221);
