@@ -10,7 +10,6 @@ export function AddNote({ onSaveNote }) {
     const [noteType, setNoteType] = useState('note-txt')
 
     function handleChange({ target }) {
-        console.log(target)
         let { value, name: field } = target
         setNoteToAdd((prevNote) => {
             return { ...prevNote, [field]: value }
@@ -21,10 +20,13 @@ export function AddNote({ onSaveNote }) {
         ev.preventDefault()
         noteToAdd.type = noteType
         console.log(noteToAdd.todos)
-        const { type, txt, url , todos } = noteToAdd
-        if (type === "note-txt" && !txt || type === "note-img" && !url || type==='note-todos' && !todos.length) return
+        const { type, txt, url, todos } = noteToAdd
+        if (type === "note-txt" && !txt || type === "note-img" && !url || type === 'note-todos' && !todos.length) return
         if (type === 'note-todos' && !todos[noteToAdd.length - 1]) todos.pop()
-
+        if (type === 'note-video') {
+            onChangeUrl(noteToAdd)
+            return
+        }
         onSaveNote(noteToAdd)
         setNoteToAdd(noteService.createEmptyNote())
     }
@@ -39,6 +41,17 @@ export function AddNote({ onSaveNote }) {
         if (ev.relatedTarget) return
         console.log('entered')
         setNoteType(null)
+    }
+
+    function onChangeUrl(note) {
+        const url = note.url
+        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/
+        const match = url.match(regExp)
+        const id = match && match[7].length == 11 ? match[7] : null
+        const newURL = 'https://www.youtube.com/embed/' + id
+        noteToAdd.url = newURL
+        onSaveNote(noteToAdd)
+        setNoteToAdd(noteService.createEmptyNote())
     }
 
     return <section className='add-note'>

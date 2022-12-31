@@ -1,12 +1,6 @@
-import { noteService } from "../services/note.service.js"
 import { NoteTools } from "./note-tools.jsx"
 
-const {useState} = React
 export function NoteTodos({ note ,onRemoveNote, onChangeColor , onEditText , onDuplicateNote , onToggleCheck}) {
-    
-    const [todos , setTodos] = useState([])
-
- 
     
     
     return <div className="note-todos-container" style={{ backgroundColor: note.backgroundColor }}>

@@ -23,7 +23,7 @@
     }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1650px) {
     .note-list {
         column-count: 5;
     }

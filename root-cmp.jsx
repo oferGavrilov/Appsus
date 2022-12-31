@@ -1,4 +1,5 @@
 const { Route, Routes } = ReactRouterDOM
+const { useState } = React
 const Router = ReactRouterDOM.HashRouter
 
 import { AppHeader } from "./cmps/app-header.jsx"
@@ -9,10 +10,19 @@ import { MailDetails } from './apps/mail/views/mail-details.jsx'
 
 import { NoteIndex } from "./apps/note/views/note-index.jsx"
 
+
 export function App() {
+
+    const [isMenuDisplayed, setIsMenuDisplayed] = useState(false)
+
+
+    function onSetMenuDisplay() {
+        setIsMenuDisplayed(!isMenuDisplayed)
+    }
+
     return <Router>
-        <section className="app">
-            <AppHeader />
+        <section className={`app ${isMenuDisplayed ? 'menu-open' : ''}`}>
+            <AppHeader onSetMenuDisplay={onSetMenuDisplay} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

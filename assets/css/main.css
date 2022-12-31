@@ -20,6 +20,8 @@
 /* Cmps */
 
 @import './cmps/user-msg.css';
+@import './cmps/home.css';
+@import './cmps/about.css';
 @import './cmps/app-header.css';
 
 /* @import './apps/mail/cmps/mail-list.css'; */

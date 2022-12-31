@@ -25,9 +25,8 @@
     padding: 1rem;
     margin: 0;
     outline: none;
-    
 }
 
 .note-video-container{
-    /* max-width: 290px; */
+    width: 300px;
 }

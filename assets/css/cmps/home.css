@@ -1,0 +1,10 @@
+.home {
+    /* background-image: url('../../img/home.jpg'); */
+    height: 100vh;
+    overflow: hidden;
+}
+.home img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}

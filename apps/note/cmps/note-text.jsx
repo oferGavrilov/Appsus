@@ -3,7 +3,7 @@ import { NoteTools } from "./note-tools.jsx"
 
 const { useState } = React
 
-export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDuplicateNote}) {
+export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDuplicateNote , onPinNote}) {
 
   const [noteText, setNoteText] = useState(note.txt)
 
@@ -28,6 +28,7 @@ export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDu
     >
       {noteText}
     </textarea>
+    <button className={`fa-solid fa-thumbtack pin-btn ${note.isPinned ? 'pinned' : '' }`} onClick={() => onPinNote(note.id)}></button>
     <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onDuplicateNote={onDuplicateNote} />
   </div>)
 }

@@ -1,6 +1,6 @@
 
 // import { AppFilter } from '../../../cmps/app-filter.jsx'
-import {showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { AddNote } from '../cmps/add-note.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
 import { NoteList } from '../cmps/note-list.jsx'
@@ -48,7 +48,7 @@ export function NoteIndex() {
             })
     }
 
-    function onEditText(note , noteText ) {
+    function onEditText(note, noteText) {
         note.txt = noteText
         noteService.updateNote(note)
     }
@@ -56,16 +56,22 @@ export function NoteIndex() {
     function onDuplicateNote(noteId) {
         noteService.duplicateNote(noteId)
             .then((note) => {
-                const newNotes = [...notes , note]
+                const newNotes = [...notes, note]
                 setNotes(newNotes)
             })
     }
 
-    function onToggleCheck(idx , noteId) {
-        noteService.toggleCheck(idx , noteId)
+    function onToggleCheck(idx, noteId) {
+        noteService.toggleCheck(idx, noteId)
             .then((notes) => {
                 setNotes(notes)
             })
+    }
+
+    function onPinNote(noteId) {
+        console.log(noteId)
+        noteService.togglePinNote(noteId)
+            .then((notes) => setNotes(notes))
     }
 
     return <section className='note-index'>
@@ -74,7 +80,13 @@ export function NoteIndex() {
 
         <AddNote onSaveNote={onSaveNote} />
 
-        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} onDuplicateNote={onDuplicateNote} onToggleCheck={onToggleCheck}/>
+        <NoteList notes={notes}
+            onRemoveNote={onRemoveNote}
+            onChangeColor={onChangeColor}
+            onEditText={onEditText}
+            onDuplicateNote={onDuplicateNote}
+            onToggleCheck={onToggleCheck}
+            onPinNote={onPinNote} />
     </section>
 
 }

@@ -20,7 +20,8 @@ export const noteService = {
     changeColor,
     duplicateNote,
     getDefaultTodo,
-    toggleCheck
+    toggleCheck,
+    togglePinNote
 }
 
 
@@ -72,7 +73,27 @@ function toggleCheck(idx , noteId) {
     note.todos[idx].isDone = !note.todos[idx].isDone
     saveNotesToStorage(notes)
     return Promise.resolve(notes)
+}
 
+function togglePinNote(noteId) {
+    const notes = loadNotesFromStorage()
+    const note = notes.find(note => note.id === noteId)
+    const noteIdx = notes.findIndex(note => note.id === noteId)
+    note.isPinned =!note.isPinned
+
+
+    if(note.isPinned){
+        let temp = notes[0]
+        notes[0] = notes[noteIdx]
+        notes[noteIdx] = temp
+    }else{
+        let temp = notes[noteIdx]
+        notes[noteIdx] = notes[notes.length -1]
+        notes[notes.length -1] = temp
+    }
+    
+    saveNotesToStorage(notes)
+    return Promise.resolve(notes)
 }
 
 function getUser() {
@@ -166,7 +187,7 @@ function _createNotes() {
             {
                 id: "n101",
                 type: "note-txt",
-                isPinned: false,
+                isPinned: true,
                 // info: {
                 //     txt: "Working on Appsus!"
                 // }
@@ -226,7 +247,7 @@ function _createNotes() {
                 //     txt: "Alex the greatest metargel!"
                 // }
                 txt:"Alex the greatest metargel!",
-                url:'https://www.youtube.com/embed/nhBVL41-_Cw',
+                url:'https://www.youtube.com/embed/hQAHSlTtcmY',
                 backgroundColor:'#fff'
 
             },
