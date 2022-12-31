@@ -1,6 +1,6 @@
 .mail-preview {
     display: grid;
-    grid-template-columns: 51.56px 190px 4.5fr .5fr;
+    grid-template-columns: 51.56px 190px 4.5fr .8fr;
     height: 40px;
     padding-block: 10px;
     color: #202124;
@@ -81,7 +81,7 @@
 /* 
 .mail-preview {
     display: grid;
-    grid-template-columns: 51.56px 190px 2.5fr .5fr;
+    grid-template-columns: 51.56px 190px 4.5fr .8fr;
     height: 40px;
     padding-block: 10px;
     color: #202124;
