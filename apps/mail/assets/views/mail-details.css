@@ -1,8 +1,4 @@
 .mail-details {
-    display: flex;
-}
-
-.mail-details {
     display: grid;
     grid-template-columns: .7155fr 2.5fr;
 }
@@ -16,15 +12,20 @@
     margin-right: 11px;
 }
 
-.mail-details-container {
+.mail-content-container {
     display: grid;
     grid-template-rows: 1fr 1.1fr 1fr 3fr;
     align-items: center;
     justify-content: center;
     background: #FFFFFF;
+    margin-top: 64px;
 }
 
-.mail-details-container>*:nth-child(even) {
+.user-icon {
+    padding-left: 9px;
+}
+
+.mail-content-container>*:nth-child(even) {
     padding-left: 55px;
     padding-right: 20px;
 }
@@ -54,25 +55,3 @@
 .mail-details-body {
     font-size: 16px;
 }
-
-
-
-/* // Mail-details -
-// Subject 22px font weight 400
-// from - 14px font weight 700
-// date - 12px font weight 400
-// body - 16px font weight 400
-
-
-// ////////
-// Colors
-
-// Header -
-// Color - black
-// Filter -
-// Backgruond - #f1f3f4
-
-// Mail-details -
-// Subject - #1F1F1F
-// from, sent at - #5E5E5E
- */

@@ -64,7 +64,7 @@ export function MailDetails() {
             <MailNav />
         </aside>
 
-        <div className='mail-details-container'>
+        <div className='mail-content-container'>
             <div className='mail-details-actions'>
                 <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
                 <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>

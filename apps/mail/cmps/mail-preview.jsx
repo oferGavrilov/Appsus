@@ -19,8 +19,8 @@ export function MailPreview({ mail, onSelectMail, onDeleteMail, onToggleRead, on
             }
         </div>
         <div className='mail-from'>{mail.from}</div>
-        <div className='mail-subject'>{mail.subject} - <span className='mail-body'>{mail.body}</span></div>
-
+        <div className='mail-subject'>{mail.subject}</div>
+        <div className='mail-body'>{mail.body}</div>
         {isMailHovered ? <div className='mail-actions'>
             <div className='delete-mail'>
                 <i className='delete-mail fa-solid fa-trash-can' onClick={(ev) => onDeleteMail(ev, mail)} title='Delete'></i>
