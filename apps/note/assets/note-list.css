@@ -1,13 +1,8 @@
 .note-list {
-    /* width: 100%; */
     width: fit-content;
-    /* column-width: 240px; */
     column-count: 2;
-    /* gap: 30px; */
-    /* margin-top: 2rem; */
     margin: 0 auto;
     padding: 2rem;
-    /* padding-bottom: 30px; */
 }
 
 @media (min-width: 980px) {
