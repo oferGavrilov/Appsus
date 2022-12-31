@@ -106,26 +106,21 @@ function getUser() {
 function getColors() {
     return [
         '#FFFFFF',
-        '#F28B82',
         '#FBBC04',
+        '#F1E4DE',
+        '#FDCFE8',
+        '#F28B82',
         '#FFF475',
         '#CCFF90',
-        '#A7FFEB',
         '#CBF0F8',
-        '#F1E4DE',
+        '#A7FFEB',
         '#D7AEFB',
-        '#FDCFE8',
         '#E6C9A8',
         '#E8EAED',
     ]
 }
 
 function save(note) {
-    // if (note.id) {
-    //     return storageService.put(NOTE_KEY, note)
-    // } else {
-    //     return storageService.post(NOTE_KEY, note)
-    // }
     return storageService.post(NOTE_KEY, note)
 }
 
@@ -154,7 +149,6 @@ function getEmptyNote() {
         }
     }
 }
-
 
 function saveNotesToStorage(notes) {
     storageService.saveToStorage(NOTE_KEY, notes)

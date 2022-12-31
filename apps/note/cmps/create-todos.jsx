@@ -10,8 +10,6 @@ export function CreateTodos({handleChange}) {
 
         noteTodos = noteTodos.filter(todo =>  todo !== '')
 
-        // noteTodos.push({txt:''})
-
         setNoteTodo(noteTodos)
         handleChange({target: {value:noteTodos , name: 'todos'}})
     }

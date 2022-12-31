@@ -19,6 +19,10 @@
     opacity: 1;
 }
 
+.note-video-container:hover .pin-btn{
+    opacity: 1;
+}
+
 .note-video-text {
     font-size: 1.2rem;
     font-weight: bold;

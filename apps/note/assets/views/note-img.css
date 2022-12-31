@@ -30,6 +30,9 @@
   opacity: 1;
 }
 
+.note-img-container:hover .pin-btn{
+  opacity: 1;
+}
 .note-img-text{
   font-size: 1.2rem;
   font-weight: bold;

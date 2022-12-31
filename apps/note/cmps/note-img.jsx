@@ -3,14 +3,11 @@ import { NoteTools } from "./note-tools.jsx"
 const {useState} = React
 
 export function NoteImg({ note, onRemoveNote, onChangeColor , onEditText , onDuplicateNote , onPinNote}) {
-    // console.log('imgNote', note)
     const [noteText , setNoteText] = useState(note.txt)
 
 
     function handleChange(ev) {
-        // const {value} = target
         const value = ev.target.innerText
-        // console.log(value)
         setNoteText(value)
     }
 

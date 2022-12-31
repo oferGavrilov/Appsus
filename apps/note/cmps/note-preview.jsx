@@ -25,6 +25,5 @@ export function NotePreview(props) {
 
     return <article className='note-preview'>
         {dynamicCmp()}
-            {/* <DynamicCmp note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor}/> */}
     </article>
 }

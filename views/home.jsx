@@ -2,6 +2,6 @@
 export function Home() {
 
     return <section className="home">
-        <img src="./assets/img/home.jpg" alt="" />
+        <h1>Appsus.</h1>
     </section>
 }
