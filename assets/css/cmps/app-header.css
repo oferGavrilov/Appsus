@@ -1,6 +1,7 @@
 header {
     background: lightcyan;
     border-bottom: 2px solid white;
+    height: 64px;
 }
 
 .app-header {
@@ -10,14 +11,14 @@ header {
 }
 
 nav a {
-    margin: .5em;
+    /* margin: .5em; */
 }
 
 nav a:active {
-    color: purple;
+    /* color: purple; */
 }
 
 nav a.active {
-    color: darkblue;
+    /* color: darkblue; */
     font-weight: bold;
 }

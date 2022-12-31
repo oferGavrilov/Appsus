@@ -1,4 +1,5 @@
 import { storageService } from '../../../services/async-storage.service.js'
+import { utilService } from '../../../services/util.service.js'
 
 const MAIL_KEY = 'mailDB'
 _createMails()
@@ -139,7 +140,7 @@ function _createMails() {
     if (!mails || !mails.length) {
         mails = [
             {
-                id: 'e101',
+                id: utilService.makeId(4),
                 subject: `It's here! The AppSus!`,
                 body: `Hi Momo
                 I hope you're having a wonderful day!
@@ -157,7 +158,7 @@ function _createMails() {
                 status: 'inbox'
             },
             {
-                id: 'e102',
+                id: utilService.makeId(4),
                 subject: 'Could you please help me out?',
                 body: `Hi Momo,
                 I just read your post. It's both well written and useful. I especially like how you write.
@@ -170,7 +171,7 @@ function _createMails() {
                 to: 'momo@appsus.com',
                 status: 'inbox'
             }, {
-                id: 'e103',
+                id: utilService.makeId(4),
                 subject: 'Your readers will love this!',
                 body: `Hi Momo
                 I'm a big fan of your website. I like the products you review here. One of my favorites is the review for AppSus
@@ -184,7 +185,7 @@ function _createMails() {
                 status: 'inbox',
                 isStarred: false
             }, {
-                id: 'e104',
+                id: utilService.makeId(4),
                 subject: 'We want to partner with you',
                 body: `Hello There!
                 I have been following you on facebook for a long while now. You share a lot of funny videos, and have built up a loyal following.
@@ -200,7 +201,7 @@ function _createMails() {
                 status: 'inbox',
                 isStarred: true
             }, {
-                id: 'e105',
+                id: utilService.makeId(4),
                 subject: 'About your free consultation with YouTube!',
                 body: `Hi Momo,
                 Thank you for signing up for the free consultation. I am looking forward to speaking with you.
@@ -213,7 +214,7 @@ function _createMails() {
                 status: 'inbox',
                 isStarred: true
             }, {
-                id: 'e106',
+                id: utilService.makeId(4),
                 subject: 'I just listened to your podcast!',
                 body: `Hi Momo
                 I recently discovered your work when I listened to the podcast. You shared so many useful insights there.
@@ -228,7 +229,7 @@ function _createMails() {
                 status: 'inbox',
                 isStarred: false
             }, {
-                id: 'e107',
+                id: utilService.makeId(4),
                 subject: 'We cordially invite you to our wedding',
                 body: `Hi Momo
                 It is that time of the year again when we have our wedding.                
@@ -243,7 +244,7 @@ function _createMails() {
                 status: 'inbox',
                 isStarred: false
             }, {
-                id: 'e108',
+                id: utilService.makeId(4),
                 subject: 'Help us to help serve you better',
                 body: `Hi Momo
                 Hope you've been enjoying our services so far.
@@ -260,7 +261,371 @@ function _createMails() {
             },
 
             {
-                id: 'e109',
+                id: utilService.makeId(4),
+                subject: `It's here! The AppSus!`,
+                body: `Hi Momo
+                I hope you're having a wonderful day!
+                I am emailing you today to let you know we have opened doors to our AppSus.
+                It helps you organize shit.
+                To learn more about what it does, read our document
+                Make sure you buy it before it shuts down.
+                If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 5000),
+                removedAt: null,
+                from: 'itzik@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            },
+            {
+                id: utilService.makeId(4),
+                subject: 'Could you please help me out?',
+                body: `Hi Momo,
+                I just read your post. It's both well written and useful. I especially like how you write.
+                I am emailing you today to let you know I have written the post response.                
+                I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
+                isRead: false,
+                sentAt: (Date.now() - 14500),
+                removedAt: null,
+                from: 'spamalot@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Your readers will love this!',
+                body: `Hi Momo
+                I'm a big fan of your website. I like the products you review here. One of my favorites is the review for AppSus
+                We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
+                `,
+                isRead: true,
+                sentAt: (Date.now() - 34000000),
+                removedAt: null,
+                from: 'spamabit@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We want to partner with you',
+                body: `Hello There!
+                I have been following you on facebook for a long while now. You share a lot of funny videos, and have built up a loyal following.
+                I also noticed that you share a lot of useful products.
+                I am reaching out to let you know I have the next product for you to promote MosquitoKiller. It's called . It helps killing mosquitos.
+                Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
+                `,
+                isRead: false,
+                sentAt: (Date.now() - 10000000),
+                removedAt: null,
+                from: 'dontreply@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'About your free consultation with YouTube!',
+                body: `Hi Momo,
+                Thank you for signing up for the free consultation. I am looking forward to speaking with you.
+                If you have any questions about the call, just reply to this email. I will get back to you ASAP.
+                Thank you,`,
+                isRead: true,
+                sentAt: (Date.now() - 10505000),
+                from: 'youtube@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'I just listened to your podcast!',
+                body: `Hi Momo
+                I recently discovered your work when I listened to the podcast. You shared so many useful insights there.
+                I wanted to let you know I run a podcast too. It's called Appsus, and I was wondering if you'd like to come on the air.
+                The podcast has . Prominent people like  have already taken part.
+                Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 12000000),
+                from: 'fan@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We cordially invite you to our wedding',
+                body: `Hi Momo
+                It is that time of the year again when we have our wedding.                
+                It is a day where we get married.                
+                You have become a valued part of our company, we would love it if you're able to come, but we understand if you can't. 
+                Please replay to this email your attendance status.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 15000000),
+                from: 'issac@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Help us to help serve you better',
+                body: `Hi Momo
+                Hope you've been enjoying our services so far.
+                We want to continue offering the best service.
+                Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
+                Thank you`,
+                isRead: true,
+                sentAt: (Date.now() - 315000000),
+                removedAt: null,
+                from: 'avi@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            },
+
+            {
+                id: utilService.makeId(4),
+                subject: `It's here! The AppSus!`,
+                body: `Hi Momo
+                I hope you're having a wonderful day!
+                I am emailing you today to let you know we have opened doors to our AppSus.
+                It helps you organize shit.
+                To learn more about what it does, read our document
+                Make sure you buy it before it shuts down.
+                If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 5000),
+                removedAt: null,
+                from: 'itzik@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            },
+            {
+                id: utilService.makeId(4),
+                subject: 'Could you please help me out?',
+                body: `Hi Momo,
+                I just read your post. It's both well written and useful. I especially like how you write.
+                I am emailing you today to let you know I have written the post response.                
+                I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
+                isRead: false,
+                sentAt: (Date.now() - 14500),
+                removedAt: null,
+                from: 'spamalot@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Your readers will love this!',
+                body: `Hi Momo
+                I'm a big fan of your website. I like the products you review here. One of my favorites is the review for AppSus
+                We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
+                `,
+                isRead: true,
+                sentAt: (Date.now() - 34000000),
+                removedAt: null,
+                from: 'spamabit@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We want to partner with you',
+                body: `Hello There!
+                I have been following you on facebook for a long while now. You share a lot of funny videos, and have built up a loyal following.
+                I also noticed that you share a lot of useful products.
+                I am reaching out to let you know I have the next product for you to promote MosquitoKiller. It's called . It helps killing mosquitos.
+                Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
+                `,
+                isRead: false,
+                sentAt: (Date.now() - 10000000),
+                removedAt: null,
+                from: 'dontreply@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'About your free consultation with YouTube!',
+                body: `Hi Momo,
+                Thank you for signing up for the free consultation. I am looking forward to speaking with you.
+                If you have any questions about the call, just reply to this email. I will get back to you ASAP.
+                Thank you,`,
+                isRead: true,
+                sentAt: (Date.now() - 10505000),
+                from: 'youtube@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'I just listened to your podcast!',
+                body: `Hi Momo
+                I recently discovered your work when I listened to the podcast. You shared so many useful insights there.
+                I wanted to let you know I run a podcast too. It's called Appsus, and I was wondering if you'd like to come on the air.
+                The podcast has . Prominent people like  have already taken part.
+                Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 12000000),
+                from: 'fan@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We cordially invite you to our wedding',
+                body: `Hi Momo
+                It is that time of the year again when we have our wedding.                
+                It is a day where we get married.                
+                You have become a valued part of our company, we would love it if you're able to come, but we understand if you can't. 
+                Please replay to this email your attendance status.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 15000000),
+                from: 'issac@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Help us to help serve you better',
+                body: `Hi Momo
+                Hope you've been enjoying our services so far.
+                We want to continue offering the best service.
+                Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
+                Thank you`,
+                isRead: true,
+                sentAt: (Date.now() - 315000000),
+                removedAt: null,
+                from: 'avi@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            },
+
+            {
+                id: utilService.makeId(4),
+                subject: `It's here! The AppSus!`,
+                body: `Hi Momo
+                I hope you're having a wonderful day!
+                I am emailing you today to let you know we have opened doors to our AppSus.
+                It helps you organize shit.
+                To learn more about what it does, read our document
+                Make sure you buy it before it shuts down.
+                If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 5000),
+                removedAt: null,
+                from: 'itzik@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            },
+            {
+                id: utilService.makeId(4),
+                subject: 'Could you please help me out?',
+                body: `Hi Momo,
+                I just read your post. It's both well written and useful. I especially like how you write.
+                I am emailing you today to let you know I have written the post response.                
+                I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
+                isRead: false,
+                sentAt: (Date.now() - 14500),
+                removedAt: null,
+                from: 'spamalot@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox'
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Your readers will love this!',
+                body: `Hi Momo
+                I'm a big fan of your website. I like the products you review here. One of my favorites is the review for AppSus
+                We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
+                `,
+                isRead: true,
+                sentAt: (Date.now() - 34000000),
+                removedAt: null,
+                from: 'spamabit@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We want to partner with you',
+                body: `Hello There!
+                I have been following you on facebook for a long while now. You share a lot of funny videos, and have built up a loyal following.
+                I also noticed that you share a lot of useful products.
+                I am reaching out to let you know I have the next product for you to promote MosquitoKiller. It's called . It helps killing mosquitos.
+                Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
+                `,
+                isRead: false,
+                sentAt: (Date.now() - 10000000),
+                removedAt: null,
+                from: 'dontreply@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'About your free consultation with YouTube!',
+                body: `Hi Momo,
+                Thank you for signing up for the free consultation. I am looking forward to speaking with you.
+                If you have any questions about the call, just reply to this email. I will get back to you ASAP.
+                Thank you,`,
+                isRead: true,
+                sentAt: (Date.now() - 10505000),
+                from: 'youtube@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            }, {
+                id: utilService.makeId(4),
+                subject: 'I just listened to your podcast!',
+                body: `Hi Momo
+                I recently discovered your work when I listened to the podcast. You shared so many useful insights there.
+                I wanted to let you know I run a podcast too. It's called Appsus, and I was wondering if you'd like to come on the air.
+                The podcast has . Prominent people like  have already taken part.
+                Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 12000000),
+                from: 'fan@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'We cordially invite you to our wedding',
+                body: `Hi Momo
+                It is that time of the year again when we have our wedding.                
+                It is a day where we get married.                
+                You have become a valued part of our company, we would love it if you're able to come, but we understand if you can't. 
+                Please replay to this email your attendance status.
+                Thank you`,
+                isRead: false,
+                sentAt: (Date.now() - 15000000),
+                from: 'issac@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: false
+            }, {
+                id: utilService.makeId(4),
+                subject: 'Help us to help serve you better',
+                body: `Hi Momo
+                Hope you've been enjoying our services so far.
+                We want to continue offering the best service.
+                Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
+                Thank you`,
+                isRead: true,
+                sentAt: (Date.now() - 315000000),
+                removedAt: null,
+                from: 'avi@appsus.com',
+                to: 'momo@appsus.com',
+                status: 'inbox',
+                isStarred: true
+            },
+
+
+            {
+                id: utilService.makeId(4),
                 subject: 'Dear friend Avi',
                 body: `Avi i tried reaching out yesterday but
                     you didn't pick my call, call me back
@@ -275,7 +640,7 @@ function _createMails() {
             },
 
             {
-                id: 'e110',
+                id: utilService.makeId(4),
                 subject: 'business meeting',
                 body: `Hi, in won't be at work until sunday,
                     try contacting me when im back.
@@ -289,7 +654,7 @@ function _createMails() {
             },
 
             {
-                id: 'e111',
+                id: utilService.makeId(4),
                 subject: 'Send money please',
                 body: `Hi i don't have a job for a while now
                     please fund me when im watching tv`,
@@ -302,7 +667,7 @@ function _createMails() {
             },
 
             {
-                id: 'e112',
+                id: utilService.makeId(4),
                 subject: 'Delivery',
                 body: `Hi my food was delievered to me cold
                        don't be afraid to send me pitzoi.
@@ -316,7 +681,7 @@ function _createMails() {
             },
 
             {
-                id: 'e113',
+                id: utilService.makeId(4),
                 subject: 'Help you to help me serve me better',
                 body: `Hi 
                 i want you to continue offering the best service.
@@ -331,7 +696,7 @@ function _createMails() {
             },
 
             {
-                id: 'e114',
+                id: utilService.makeId(4),
                 subject: 'I support you guys',
                 body: `Hi,
                 Thank you, Momo`,
@@ -344,7 +709,7 @@ function _createMails() {
             },
 
             {
-                id: 'e115',
+                id: utilService.makeId(4),
                 subject: 'Help me',
                 body: `Hi , please send help
                 Thank you, Momo`,
