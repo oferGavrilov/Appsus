@@ -118,11 +118,11 @@ export function MailIndex() {
 
 
     return <section className='mail-index'>
-        <section >
+        {/* <section className='filter-section'>
             <MailFilter onSetFilter={onSetFilter} />
             <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button>
             <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button>
-        </section>
+        </section> */}
         {
             isLoading ? <h2>Loading..</h2>
                 : <main className='mail-main-content'>

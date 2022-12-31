@@ -94,22 +94,3 @@
 
 
 
-// Mail-details -
-// Subject 22px font weight 400
-// from - 14px font weight 700
-// date - 12px font weight 400
-// body - 16px font weight 400
-
-
-// ////////
-// Colors
-
-// Header -
-// Color - black
-// Filter -
-// Backgruond - #f1f3f4
-
-// Mail-details -
-// Subject - #1F1F1F
-// from, sent at - #5E5E5E
-
