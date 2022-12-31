@@ -89,8 +89,3 @@
 // Add logo and favicon
 // work on integration - and about and home page
 // consider doing  shared header
-
-
-
-
-

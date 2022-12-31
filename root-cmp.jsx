@@ -15,6 +15,8 @@ import { BookAdd } from './apps/book/pages/book-add.jsx'
 import { BookDetails } from './apps/book/pages/book-details.jsx'
 import { BookEdit } from './apps/book/pages/book-edit.jsx'
 import { BookIndex } from './apps/book/pages/book-index.jsx'
+import { UserMsg } from './cmps/user-msg.jsx'
+
 
 export function App() {
 
@@ -42,14 +44,15 @@ export function App() {
 
                 <Route path="/note" element={<NoteIndex />} />
                 {/* <Route> */}
-                <Route element={<BookIndex /> } path="/book" />
+                <Route element={<BookIndex />} path="/book" />
                 <Route element={<BookEdit />} path="/book/edit" />
                 <Route element={<BookEdit />} path="/book/edit/:bookId" />
                 <Route element={<BookAdd />} path="/book/addBook" />
-                <Route element={<BookDetails/>} path="/book/:bookId" />
+                <Route element={<BookDetails />} path="/book/:bookId" />
 
 
             </Routes>
         </section>
+        <UserMsg />
     </Router>
 }

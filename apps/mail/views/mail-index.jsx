@@ -39,9 +39,12 @@ export function MailIndex() {
         mailService.deleteMail(mail)
             .then(deletedMail => {
                 const updatedMails = mails.filter(mail => mail.id !== deletedMail.id)
+                showSuccessMsg('Mail deleted successfully')
                 setMails(updatedMails)
             })
-            .catch(err => console.log('Had trouble deleting mail at mail index', err))
+            .catch(err => {
+                showErrorMsg('Failed to delete mail')
+            })
     }
 
     function loadMails() {

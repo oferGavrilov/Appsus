@@ -1,7 +1,10 @@
 .mail-preview {
     display: grid;
-    grid-template-columns: 51.56px 190px 4.5fr .4fr;
-    height: 40px;
+    /*  */
+    grid-template-columns: 1fr .1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    /*  */
+    height: 80px;
     padding-block: 10px;
     color: #202124;
     box-shadow: inset 0px -0.4px 0px rgb(0 0 0 / 20%);
@@ -28,6 +31,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 40px;
+    /*  */
+    grid-area: 1/2/1/1;
 }
 
 .mail-subject {
@@ -41,6 +46,13 @@
 .mail-body {
     color: #5F6368;
     font-family: roboto-reg;
+    /*  */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 20px;
+    /*  */
+    grid-area: 3/1/3/2;
 }
 
 .star {
@@ -64,6 +76,7 @@
     justify-self: end;
     font-size: 12px;
     padding-inline-end: 10px;
+    grid-area: 3/2/3/3;
 }
 
 .mail-date-sent.read {
@@ -72,5 +85,73 @@
 
 .mail-actions {
     display: flex;
-    gap: 10px;
+    justify-content: space-evenly;
+    grid-area: 3/2/3/3;
+
+}
+
+
+
+@media (min-width:850px) {
+
+    .mail-preview {
+        grid-template-columns: 51.56px 100px 190px 4.5fr .8fr;
+        grid-template-rows: none;
+        height: 40px;
+    }
+
+
+    .mail-star {
+
+        grid-area: 1/1/2/1;
+    }
+
+    .mail-from {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 40px;
+        /*  */
+        grid-area: 2/1/3/1;
+    }
+
+    .mail-from {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 40px;
+    }
+
+    .mail-preview.read .mail-body,
+    .mail-body {
+        color: #5F6368;
+        font-family: roboto-reg;
+        /*  */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 20px;
+        /*  */
+        grid-area: 3/1/4/1;
+    }
+
+    .mail-subject {
+        grid-area: 4/1/5/1;
+    }
+
+    .mail-date-sent {
+        justify-self: end;
+        font-size: 12px;
+        padding-inline-end: 10px;
+        grid-area: 3/1/4/1;
+    }
+
+    .mail-date-sent.read {
+        color: #5F6368;
+    }
+
+    .mail-actions {
+        display: flex;
+        justify-content: space-evenly;
+    }
 }

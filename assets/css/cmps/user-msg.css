@@ -2,8 +2,14 @@
     background-color: lightgray;
     padding: 1em;
     position: absolute;
-    top: 1em;
-    right: 1em;
+    bottom: 2em;
+    left: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    min-height: 100px;
+    min-width: 220px;
+    z-index: 6;
 }
 
 .user-msg.success {
@@ -15,7 +21,9 @@
 }
 
 
-.user-msg button{
-    float: right;
+.user-msg button {
+    position: absolute;
     margin: 1em;
+    top: 1px;
+    right: 1px;
 }

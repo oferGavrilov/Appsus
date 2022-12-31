@@ -1,5 +1,4 @@
 
-import { mailService } from '../apps/mail/services/mail.service.js'
 
 function createEventEmitter() {
     const listenersMap = {}
@@ -22,6 +21,7 @@ function createEventEmitter() {
 export const eventBusService = createEventEmitter()
 
 export function showUserMsg(msg) {
+    console.log('user msg');
     eventBusService.emit('show-user-msg', msg)
 }
 
