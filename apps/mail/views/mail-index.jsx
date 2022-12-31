@@ -1,8 +1,7 @@
-const { useState, useEffect, useRef } = React
+const { useState, useEffect } = React
 const { useNavigate, useLocation } = ReactRouterDOM
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
-import { MailHeader } from '../cmps/mail-header.jsx'
 import { MailNav } from '../cmps/mail-nav.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
 
@@ -55,7 +54,6 @@ export function MailIndex() {
     }
 
     function loadUnreadMailsCount() {
-        // Should be changed - rendered at start and on change
         if (!mails.length) return
         const mailsCount = mails.reduce((acc, mail) => {
             if (!mail.isRead) acc++
@@ -100,7 +98,6 @@ export function MailIndex() {
         ev.stopPropagation()
         console.log('mail:', mail)
         mail.isRead = !mail.isRead
-        // loadUnreadMailsCount(mails)
         setMails([...mails])
         mailService.save(mail)
             .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
@@ -118,11 +115,11 @@ export function MailIndex() {
 
 
     return <section className='mail-index'>
-        {/* <section className='filter-section'>
+        <section className='filter-section'>
             <MailFilter onSetFilter={onSetFilter} />
             <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button>
             <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button>
-        </section> */}
+        </section>
         {
             isLoading ? <h2>Loading..</h2>
                 : <main className='mail-main-content'>

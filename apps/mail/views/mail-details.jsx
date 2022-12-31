@@ -68,7 +68,6 @@ export function MailDetails() {
             <div className='mail-details-actions'>
                 <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
                 <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
-                <i className='move-mail fa-regular fa-folder' title='Move to'></i>
                 <i className='unread fa-regular fa-envelope' title='Mark as unread'></i>
             </div>
             <div className='mail-details-subject'>{selectedMail.subject}</div>

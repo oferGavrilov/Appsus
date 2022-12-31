@@ -1,8 +1,44 @@
 .filter-section {
-    /* position: absolute;
-    z-index: 2;
+    margin: 0 auto;
+    height: 50px;
     display: flex;
-    gap: 20px;
-    left: 20%;
-    top: 1%; */
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.mail-filter {
+    display: flex;
+    gap: 10px;
+}
+
+.mail-filter label {
+    margin-top: 3px;
+}
+
+
+.filter-section button {
+    background: none;
+}
+
+.filter-section button:hover {
+    background: rgb(223, 230, 240);
+}
+
+.txt-filter-container input {
+    background: none;
+    border: none;
+}
+
+.txt-filter-container input:focus {
+    outline: none;
+}
+
+.txt-filter-container {
+    background: rgb(223, 230, 240);
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding-inline: 10px;
 }

@@ -18,7 +18,7 @@ export function MailFilter({ onSetFilter }) {
     }
 
     return <section className='mail-filter'>
-        <div>
+        <div className='txt-filter-container'>
             <i onClick={onSubmitFilter} className="fa-solid fa-magnifying-glass"></i>
 
             <input
