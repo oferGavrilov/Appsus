@@ -1,3 +1,48 @@
-.note-filter{
-    
+.note-filter {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 2em;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    /* height: 40px; */
+}
+
+.note-filter form {
+    background-color: #f5f7f8;
+    padding: .2em 1em;
+    border-radius: 12px;
+}
+
+.note-filter input {
+    border: solid transparent;
+    outline: none;
+    background-color: unset;
+    padding: 1em;
+}
+.search-btn {
+    background-color: unset;
+}
+
+.sort-btns{
+    margin-top: 4px;
+    background-color: #f5f7f8;
+    padding: .7em 2em;
+    display: flex;
+    border-radius: 1em;
+    justify-content: space-between;
+}
+.sort-btns > button {
+    font-size: 1rem;
+    margin: 0 10px;
+    opacity: .5;
+    transition:  background-color .4s;
+}
+.sort-btns:hover  > button {
+    opacity: 1;
+}
+.sort-btns > button:hover {
+    background-color: lightgray;
+    border-radius: 1em;
 }
