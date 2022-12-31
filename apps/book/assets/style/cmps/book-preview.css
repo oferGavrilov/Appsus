@@ -1,0 +1,48 @@
+.book-preview {
+    text-align: center;
+    padding: 0.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-preview h4{
+    text-transform: capitalize;
+    color: black;
+}
+
+.book-preview img {
+    max-width: 100px;
+}
+
+.btn-container {
+    display: flex;
+    padding: .4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-book-btn {
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    border-radius: 1em;
+    color: white;
+
+    transition: background-color .4s , color .4s;
+}
+.add-book-btn:hover {
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}
+.add-book-google-btn {
+    background-color: var(--clr3bg);
+    padding: 1rem;
+    border-radius: 1em;
+    color: white;
+
+    transition: background-color .4s , color .4s;
+}
+.add-book-google-btn:hover {
+    background-color: var(--clr3bg-light);
+    color: var(--clr3bg);
+}

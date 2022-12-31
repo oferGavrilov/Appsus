@@ -1,0 +1,11 @@
+.long-txt {
+    font-size: 1.1rem;
+    word-spacing: 5px;
+}
+.more-less-btn{
+    font-size: 1.1rem;
+    color: blue;
+}
+.more-less-btn:hover{
+    color: blue;
+}

@@ -30,11 +30,12 @@ export function NoteFilter({ onSetFilter }) {
         <form onSubmit={onSubmitFilter}>
             <input type="text"
                 name="txt"
+                className="search-input"
                 placeholder="Search..."
                 value={filterByToEdit.txt}
                 onChange={handleChange} />
 
-            <button>Search</button>
+            <button className="search-btn">Search</button>
         </form>
         <ul>
             <button name="type" value='note-txt' onClick={onSubmitFilter} className='fa-solid fa-font'></button>

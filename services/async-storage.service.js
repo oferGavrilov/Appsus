@@ -5,7 +5,8 @@ export const storageService = {
     put,
     remove,
     saveToStorage,
-    loadFromStorage
+    loadFromStorage,
+    postGoogleBook
 }
 
 function query(entityType, delay = 500) {
@@ -38,6 +39,15 @@ function put(entityType, updatedEntity) {
         entities.splice(idx, 1, updatedEntity)
         _save(entityType, entities)
         return updatedEntity
+    })
+}
+
+function postGoogleBook(entityType, newEntity) {
+    newEntity = {...newEntity}
+    return query(entityType).then(entities =>{
+        entities.push(newEntity)
+        _save(entityType, entities)
+        return newEntity
     })
 }
 

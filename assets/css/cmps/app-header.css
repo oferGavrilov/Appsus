@@ -1,11 +1,12 @@
 header {
   background: #f6f8fc;
-  /* background: lightcyan;
-    border-bottom: 2px solid white;
-    height: 64px; */
+
 }
 
 .app-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
@@ -20,7 +21,6 @@ nav a:active {
 }
 
 nav a.active {
-  /* color: darkblue; */
   background: rgb(211, 227, 253);
   border-radius: 8px;
   font-weight: bold;
@@ -30,14 +30,10 @@ nav a.active {
   height: 100px;
 }
 
-
-
-
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background: #2A2929; */
 
   box-shadow: none;
   color: black;
@@ -56,9 +52,7 @@ nav a.active {
 
 .app-nav a {
   padding: 1.5em 0;
-  /* border-bottom: 1.5px solid rgb(148, 144, 144); */
   text-align: center;
-  /* margin-right: 1em; */
 
 }
 
