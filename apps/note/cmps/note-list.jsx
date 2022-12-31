@@ -1,13 +1,7 @@
-
 import { NotePreview } from "./note-preview.jsx"
 
 export function NoteList({ notes, onRemoveNote, onChangeColor, onEditText, onDuplicateNote, onToggleCheck, onPinNote }) {
-    // console.log(notes)
-
-
-
     return (
-        
         <div className='note-list'>
             {
                 notes.map(note =>
@@ -18,7 +12,8 @@ export function NoteList({ notes, onRemoveNote, onChangeColor, onEditText, onDup
                         onEditText={onEditText}
                         onDuplicateNote={onDuplicateNote}
                         onToggleCheck={onToggleCheck}
-                        onPinNote={onPinNote} />)}
+                        onPinNote={onPinNote} />
+                )}
         </div>
     )
 

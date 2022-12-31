@@ -1,5 +1,4 @@
 
-// import { AppFilter } from '../../../cmps/app-filter.jsx'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { AddNote } from '../cmps/add-note.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
@@ -31,13 +30,22 @@ export function NoteIndex() {
                 showSuccessMsg('Note saved successfully')
                 setNotes(newNotes)
             })
+            .catch((err) => {
+                console.error(err)
+                showErrorMsg('Could not save note')
+            })
     }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
                 const newNotes = notes.filter(note => note.id !== noteId)
+                showSuccessMsg('Note deleted successfully')
                 setNotes(newNotes)
+            })
+            .catch((err)=> {
+                console.error(err)
+                showErrorMsg('Could not remove note')
             })
     }
 
@@ -57,7 +65,12 @@ export function NoteIndex() {
         noteService.duplicateNote(noteId)
             .then((note) => {
                 const newNotes = [...notes, note]
+                showSuccessMsg('Note duplicated successfully')
                 setNotes(newNotes)
+            })
+            .catch((err)=> {
+                console.error(err)
+                showErrorMsg('Could not duplicate note')
             })
     }
 
@@ -76,7 +89,6 @@ export function NoteIndex() {
 
     return <section className='note-index'>
         <NoteFilter onSetFilter={onSetFilter} />
-        {/* <AppFilter onSetFilter={onSetFilter} /> */}
 
         <AddNote onSaveNote={onSaveNote} />
 

@@ -1,5 +1,6 @@
 .add-note {
-  width: 500px;
+  /* width: 500px; */
+  width: 70%;
   border: 1px solid transparent;
   border-radius: 8px;
   line-height: 50px;
@@ -42,31 +43,6 @@
   height: 100%;
 }
 
-/* .note-type-btns {
-    display: flex;
-    justify-content: space-between;
-    right: 20px;
-    top: 0;
-    position: absolute;
-  } */
-/*   
-  .note-type-btns > * {
-    border: none;
-    color: rgb(114 114 114);
-    font-size: 1rem;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 100px;
-    background-color: unset;
-  }
-  
-  .note-type-btns > *:hover {
-    opacity: 0.87;
-    background-color: rgba(95, 99, 104, 0.157);
-    color: rgb(24, 24, 24);
-  } */
-
 .type-btns>button {
   color: rgb(112, 107, 107);
   background-color: inherit;
@@ -77,5 +53,9 @@
 
 .type-btns>button:hover {
   background-color: rgba(95, 99, 104, 0.157);
-
+}
+@media (min-width: 768px) {
+  .add-note{
+    width: 500px;
+  }
 }

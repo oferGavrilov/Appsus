@@ -1,6 +1,8 @@
 import { noteService } from "../services/note.service.js"
 import { CreateTodos } from "./create-todos.jsx"
 import { NoteTypeBtns } from "./note-type-btns.jsx"
+import {showSuccessMsg , showErrorMsg} from '../../../services/event-bus.service.js'
+
 
 const { useState } = React
 
@@ -19,14 +21,19 @@ export function AddNote({ onSaveNote }) {
     function onSubmitNote(ev) {
         ev.preventDefault()
         noteToAdd.type = noteType
-        console.log(noteToAdd.todos)
+
         const { type, txt, url, todos } = noteToAdd
-        if (type === "note-txt" && !txt || type === "note-img" && !url || type === 'note-todos' && !todos.length) return
+        if (type === "note-txt" && !txt || type === "note-img" && !url || type === "note-video" && !url || type === 'note-todos' && !todos.length){
+            showErrorMsg('Could not save note')
+            return
+        } 
         if (type === 'note-todos' && !todos[noteToAdd.length - 1]) todos.pop()
         if (type === 'note-video') {
             onChangeUrl(noteToAdd)
             return
         }
+
+        showSuccessMsg('note added successfully')
         onSaveNote(noteToAdd)
         setNoteToAdd(noteService.createEmptyNote())
     }
@@ -39,7 +46,6 @@ export function AddNote({ onSaveNote }) {
 
     function onCloseInput(ev) {
         if (ev.relatedTarget) return
-        console.log('entered')
         setNoteType(null)
     }
 

@@ -6,7 +6,6 @@ const { useState } = React
 
 
 export function NoteTools({ note, onRemoveNote , onChangeColor , onDuplicateNote}) {
-    // console.log(note)
 
     const [togglePalette , setTogglePalette] = useState(false)
     function closePalette() {

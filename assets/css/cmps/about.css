@@ -1,4 +1,43 @@
 .about {
-    /* background-color: rgb(246, 246, 242); */
-    height: 100vh;
+    background-image: url(/assets/img/about.jpg);
+    
+    background-attachment: fixed ;
+    background-size: 100% 100%;
+
+    height: calc(100vh - 59px);
+}
+
+.about-us{
+    opacity: .7;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin:10em auto;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: aliceblue;
+    padding: 2em;
+    font-size: 1.1rem;
+}
+.about-us >*{
+    opacity: 1;
+}
+.about-us p{
+    /* margin: 0 10em; */
+    margin-top: 0;
+    letter-spacing: 1px;
+    word-spacing: 4px;
+    font-weight: bold;
+}
+.social-links > a {
+    padding: 0 1em;
+    margin: 0 1em;
+    font-size: 1.5rem;
+}
+
+.social-links > a:hover {
+    background-color: lightgray;
+    border-radius: 1em;
 }

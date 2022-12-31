@@ -2,7 +2,7 @@ import { NoteTools } from "./note-tools.jsx"
 
 const { useState } = React
 
-export function NoteVideo({ note, onRemoveNote, onChangeColor, onEditText , onDuplicateNote}) {
+export function NoteVideo({ note, onRemoveNote, onChangeColor, onEditText , onDuplicateNote ,onPinNote}) {
 
     const [noteText , setNoteText] = useState(note.txt)
 
@@ -21,6 +21,7 @@ export function NoteVideo({ note, onRemoveNote, onChangeColor, onEditText , onDu
                 contentEditable
                 value={noteText}
                 onBlur={() => onEditText(note, noteText)} >{note.txt}</p>
+            <button className={`fa-solid fa-thumbtack pin-btn ${note.isPinned ? 'pinned' : ''}`} onClick={() => onPinNote(note.id)}></button>
 
 
             <NoteTools note={note} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onDuplicateNote={onDuplicateNote}/>
