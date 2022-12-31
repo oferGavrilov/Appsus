@@ -1,9 +1,9 @@
 button {
     cursor: pointer;
     background-color: none;
-    margin: 0.5em;
+    /* margin: 0.5em; */
     border: 0;
-    padding: 0.5em 0.8em;
+    /* padding: 0.5em 0.8em; */
     border-radius: 4px;
 }
 

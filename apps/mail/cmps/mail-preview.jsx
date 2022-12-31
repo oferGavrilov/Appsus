@@ -6,16 +6,15 @@ export function MailPreview({ mail, onSelectMail, onDeleteMail, onToggleRead, on
     return <section onClick={() => onSelectMail(mail.id)}
         className={`mail-preview ${mail.isRead ? ' read' : ''}`} onMouseEnter={() => console.log('check')}>
 
-        {/* <div onClick={(ev) => onToggleStarred(ev, mail)} className='mail-star'>⭐</div> */}
         <div className='mail-star'>
             {mail.isStarred ?
-                <i className='fa-solid fa-star' title='Starred' onClick={(ev) => onToggleStarred(ev, mail)}></i>
+                <i className='fa-solid fa-star star mail-starred' title='Starred' onClick={(ev) => onToggleStarred(ev, mail)}></i>
                 :
-                <i className='fa-regular fa-star' title='Starred' onClick={(ev) => onToggleStarred(ev, mail)}></i>
+                <i className='fa-regular fa-star star' title='Starred' onClick={(ev) => onToggleStarred(ev, mail)}></i>
             }
         </div>
+        <div className='mail-from'>{mail.from}</div>
         <div className='mail-subject'>{mail.subject}</div>
-        <div className='mail-body'>{utilService.getTextToDisplay(mail.body, 40)}</div>
         <div className='delete-mail'>
             <i className='delete-mail fa-solid fa-trash-can' onClick={(ev) => onDeleteMail(ev, mail)} title='Delete'></i>
         </div>
@@ -28,7 +27,8 @@ export function MailPreview({ mail, onSelectMail, onDeleteMail, onToggleRead, on
             }
         </div>
 
-        <div className='mail-date-sent'>{utilService.getFormattedDate(mail.sentAt)}</div>
+        <div className={`mail-date-sent ${mail.isRead ? 'read' : ''}`}>{utilService.getFormattedDate(mail.sentAt)}</div>
+
     </section >
 }
 

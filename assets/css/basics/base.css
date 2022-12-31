@@ -2,6 +2,26 @@
     box-sizing: border-box;
 }
 
+/* typography */
+@font-face {
+    font-family: roboto-reg;
+    src: url(/assets/fonts/Roboto-Regular.ttf)
+}
+
+@font-face {
+    font-family: roboto-med;
+    src: url(/assets/fonts/Roboto-Medium.ttf);
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(/assets/fonts/Roboto-Bold.ttf);
+}
+
+html {
+    font-family: roboto-reg;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -26,20 +46,4 @@ img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-}
-
-/* typography */
-@font-face {
-    font-family: roboto-reg;
-    src: url(/assets/fonts/Roboto-Regular.ttf)
-}
-
-@font-face {
-    font-family: roboto-med;
-    src: url(/assets/fonts/Roboto-Medium.ttf);
-}
-
-@font-face {
-    font-family: roboto-bold;
-    src: url(/assets/fonts/Roboto-Bold.ttf);
 }
