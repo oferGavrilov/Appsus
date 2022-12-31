@@ -5,6 +5,7 @@
     padding: 2rem;
 }
 
+
 @media (min-width: 980px) {
     .note-list {
         column-count: 3;

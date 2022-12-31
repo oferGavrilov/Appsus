@@ -14,12 +14,12 @@ export function NoteFilter({ onSetFilter }) {
 
     function onSubmitFilter(ev) {
         ev.preventDefault()
-        let { value , name:field} = ev.target
-        
-        if(filterByToEdit.type === value) value = ''
+        let { value, name: field } = ev.target
 
-        setFilterByToEdit((prevFilter)=> {
-            return {...prevFilter, [field]: value }
+        if (filterByToEdit.type === value) value = ''
+
+        setFilterByToEdit((prevFilter) => {
+            return { ...prevFilter, [field]: value }
         })
         filterByToEdit.type = value
 
@@ -28,6 +28,7 @@ export function NoteFilter({ onSetFilter }) {
 
     return <section className="note-filter">
         <form onSubmit={onSubmitFilter}>
+            <button className="search-btn fas fa-search"></button>
             <input type="text"
                 name="txt"
                 className="search-input"
@@ -35,9 +36,8 @@ export function NoteFilter({ onSetFilter }) {
                 value={filterByToEdit.txt}
                 onChange={handleChange} />
 
-            <button className="search-btn">Search</button>
         </form>
-        <ul>
+        <ul className="sort-btns">
             <button name="type" value='note-txt' onClick={onSubmitFilter} className='fa-solid fa-font'></button>
             <button name="type" value='note-todos' onClick={onSubmitFilter} className='fa-solid fa-list'></button>
             <button name="type" value='note-img' onClick={onSubmitFilter} className='fa-regular fa-image'></button>
