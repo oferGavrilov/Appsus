@@ -59,11 +59,11 @@ function remove(mailId) {
     return storageService.remove(MAIL_KEY, mailId)
 }
 
-function getUnreadMailsCount(mails, status) {
-    return mails.reduce((acc, mail) => {
-        if (!mail.isRead && mail.status === status) acc++
-        return acc
-    }, 0)
+function getUnreadMailsCount(mails) {
+    // return mails.reduce((acc, mail) => {
+    //     if (!mail.isRead) acc++
+    //     return acc
+    // }, 0)
 }
 
 function getUser() {

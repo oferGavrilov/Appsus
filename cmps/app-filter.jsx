@@ -5,7 +5,7 @@ import { MailFilter } from '../apps/mail/cmps/mail-filter.jsx'
 
 export function AppFilter() {
     // return <NoteFilter  />
-    const [isShown , setIsShown] = useState(false)
+    const [isShown, setIsShown] = useState(false)
 
     return <form className='filter'>
         <div>
@@ -15,9 +15,9 @@ export function AppFilter() {
                 placeholder='Search...' />
             <button onClick={() => setIsShown(!isShown)}><i className="fa-solid fa-filter"></i></button>
         </div>
-            {isShown && <div className='something'>
-                
-                </div>}
+        {isShown && <div className='something'>
+
+        </div>}
     </form>
 
 }

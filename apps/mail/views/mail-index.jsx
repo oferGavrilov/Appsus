@@ -23,12 +23,12 @@ export function MailIndex() {
 
     useEffect(() => {
         setIsLoading(true)
-        console.log('location rendered')
         loadMails()
     }, [filterBy, location.pathname])
 
     useEffect(() => {
         loadUnreadMailsCount(mails)
+        console.log('rendered')
     }, [mails])
 
     useEffect(() => {
@@ -46,19 +46,22 @@ export function MailIndex() {
     }
 
     function loadMails() {
-        console.log('location.pathname:', location.pathname.slice(6))
         filterBy.status = location.pathname.slice(6)
         mailService.query(filterBy)
             .then(mails => {
                 setMails(mails)
-                console.log('mails:', mails)
             })
             .catch(err => console.log('Had trouble with loading mails in mail-index(loadMails)', err))
     }
 
-    function loadUnreadMailsCount(mails) {
+    function loadUnreadMailsCount() {
+        // Should be changed - rendered at start and on change
         if (!mails.length) return
-        setUnreadMailsCount(mailService.getUnreadMailsCount(mails, 'inbox'))
+        const mailsCount = mails.reduce((acc, mail) => {
+            if (!mail.isRead) acc++
+            return acc
+        }, 0)
+        setUnreadMailsCount(mailsCount)
         setIsLoading(false)
     }
 
@@ -93,19 +96,40 @@ export function MailIndex() {
         setIsComposingOn(false)
     }
 
+    function onToggleRead(ev, mail) {
+        ev.stopPropagation()
+        console.log('mail:', mail)
+        mail.isRead = !mail.isRead
+        // loadUnreadMailsCount(mails)
+        setMails([...mails])
+        mailService.save(mail)
+            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
+            .catch(err => console.log('Had trouble updating mail read at mail list', err))
+    }
+
+    function onToggleStarred(ev, mail) {
+        ev.stopPropagation()
+        mail.isStarred = !mail.isStarred
+        setMails([...mails])
+        mailService.save(mail)
+            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
+            .catch(err => console.log('Had trouble updating mail star at mail list', err))
+    }
+
+
     return <section className='mail-index'>
         <section className='mail-header-container'>
-            <button onClick={() => setIsComposingOn(true)}>Compose</button>
-            <MailHeader />
-            <MailFilter onSetFilter={onSetFilter} />
-            <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button>
-            <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button>
+            <button onClick={() => setIsComposingOn(true)}><i className="fa-solid fa-pencil"></i>Compose</button>
+            {/* <MailHeader /> */}
+            {/* <MailFilter onSetFilter={onSetFilter} /> */}
+            {/* <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button> */}
+            {/* <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button> */}
         </section>
         {isLoading ? <h2>Loading..</h2>
             : <main className='mail-main-content'>
                 <MailNav unreadMailsCount={unreadMailsCount} />
                 <MailList mails={mails} onSelectMail={onSelectMail}
-                    onDeleteMail={onDeleteMail} loadUnreadMailsCount={loadUnreadMailsCount} />
+                    onDeleteMail={onDeleteMail} onToggleRead={onToggleRead} onToggleStarred={onToggleStarred} />
             </main>}
 
         {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
