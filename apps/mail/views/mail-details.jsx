@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 
 import { MailNav } from '../cmps/mail-nav.jsx'
 import { mailService } from '../services/mail.service.js'
@@ -19,7 +19,6 @@ export function MailDetails() {
     function loadSelectedMail() {
         mailService.get(mailId)
             .then((mail) => {
-                console.log('mail:', mail)
                 setSelectedMail(mail)
                 if (!mail.isRead) setMailIsRead(mail)
             })
@@ -41,7 +40,6 @@ export function MailDetails() {
     function onDeleteMail() {
         mailService.move(selectedMail, 'trash')
             .then(res => {
-                console.log(res)
                 showSuccessMsg('Mail moved to Trash')
             })
             .catch(err => {
@@ -59,8 +57,6 @@ export function MailDetails() {
             <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
                 <i className="fa-solid fa-pencil compose-icon"></i>
                 Compose</button>
-
-            {/* <MailNav unreadMailsCount={unreadMailsCount} /> */}
             <MailNav />
         </aside>
 
@@ -78,7 +74,7 @@ export function MailDetails() {
                     <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
                     <div className='mail-star'>
                         {selectedMail.isStarred ?
-                            <i className='fa-solid fa-star star mail-starred' title='Starred'></i>
+                            <i className='fa-solid fa-star starred' title='Starred'></i>
                             :
                             <i className='fa-regular fa-star star' title='Starred'></i>
                         }
@@ -92,4 +88,3 @@ export function MailDetails() {
     </section>
 }
 
-{/* Consider: <div className='mail-subject'>{selectedMail.subject}</div> */ }

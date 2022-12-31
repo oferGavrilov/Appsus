@@ -1,13 +1,13 @@
-const { useState, useEffect } = React
-const { useNavigate, useLocation } = ReactRouterDOM
-import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
-
 import { MailNav } from '../cmps/mail-nav.jsx'
 import { MailList } from '../cmps/mail-list.jsx'
-
-import { mailService } from '../services/mail.service.js'
 import { MailFilter } from '../cmps/mail-filter.jsx'
 import { ComposeMail } from '../cmps/compose-mail.jsx'
+
+import { mailService } from '../services/mail.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+
+const { useState, useEffect } = React
+const { useNavigate, useLocation } = ReactRouterDOM
 
 export function MailIndex() {
 
@@ -27,7 +27,6 @@ export function MailIndex() {
 
     useEffect(() => {
         loadUnreadMailsCount(mails)
-        console.log('rendered')
     }, [mails])
 
     useEffect(() => {
@@ -53,7 +52,7 @@ export function MailIndex() {
             .then(mails => {
                 setMails(mails)
             })
-            .catch(err => console.log('Had trouble with loading mails in mail-index(loadMails)', err))
+            .catch(err => showErrorMsg('Failed to load mails'))
     }
 
     function loadUnreadMailsCount() {
@@ -83,11 +82,9 @@ export function MailIndex() {
     function onSendMail(mail) {
         mailService.save(mail)
             .then((mail) => {
-                console.log('mail:', mail)
                 showSuccessMsg('Mail sent')
             })
             .catch((err) => {
-                console.log('Had trouble sending mail in compose mail', err)
                 showErrorMsg('Failed to send mail')
             })
         onDoneComposing()
@@ -99,11 +96,9 @@ export function MailIndex() {
 
     function onToggleRead(ev, mail) {
         ev.stopPropagation()
-        console.log('mail:', mail)
         mail.isRead = !mail.isRead
         setMails([...mails])
         mailService.save(mail)
-            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
             .catch(err => console.log('Had trouble updating mail read at mail list', err))
     }
 
@@ -112,7 +107,7 @@ export function MailIndex() {
         mail.isStarred = !mail.isStarred
         setMails([...mails])
         mailService.save(mail)
-            .then(updatedEntity => console.log('updatedEntity:', updatedEntity))
+            .then(() => showSuccessMsg('Mail starred successfully'))
             .catch(err => console.log('Had trouble updating mail star at mail list', err))
     }
 
@@ -140,7 +135,6 @@ export function MailIndex() {
         }
 
         {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
-
     </section >
 }
 
