@@ -7,10 +7,8 @@ export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDu
 
   const [noteText, setNoteText] = useState(note.txt)
 
-
   function changeHandle({ target }) {
     const { value } = target
-    // console.log(value)
     setNoteText(value)
   }
 
@@ -18,11 +16,6 @@ export function NoteText({ note, onRemoveNote, onChangeColor , onEditText , onDu
     target.style.height = 'inherit'
     target.style.height = `${target.scrollHeight}px`
   }
-
-  // function onSaveChange() {
-  //   note.txt = noteText
-  //   noteService.updateNote(note)
-  // }
 
   return (<div className="note-text-container" style={{ backgroundColor: note.backgroundColor }}>
     <textarea

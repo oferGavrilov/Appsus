@@ -1,42 +1,56 @@
 .add-note {
-    width: 315px;
-    z-index: 10;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    line-height: 50px;
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
-    padding: 0 1rem;
-    margin: 2rem auto;
-    background-color: #fff;
-    position: relative;
-  }
-  
-  .add-note form {
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    position: relative;
-  }
-  
-  .add-note form input {
-    background-color: #fff;
+  width: 500px;
+  z-index: 10;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  line-height: 50px;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  padding: 0 1rem;
+  margin: 2rem auto;
+  background-color: #fff;
+  position: relative;
+}
 
-    outline: none;
-    padding: 12px 16px 12px 16px;
-    width: 100%;
-    font-size: 16px;
-    border: solid transparent;
-    letter-spacing: 0.2px;
-    height: 100%;
-  }
-  .note-type-btns {
+.add-note-btn {
+  /* background-color: unset; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.add-note form {
+  border-radius: 8px;
+  border: none; 
+  padding: 0 2rem 0 0;
+  outline: none;
+  position: relative;
+}
+
+.add-note:hover .type-btns>button {
+  color: black;
+}
+
+.add-note form input {
+  background-color: #fff;
+
+  outline: none;
+  padding: 0  3rem 0 0;
+  /* padding: 12px 16px 12px 16px; */
+  width: 100%;
+  font-size: 16px;
+  border: solid transparent;
+  letter-spacing: 0.2px;
+  height: 100%;
+}
+
+/* .note-type-btns {
     display: flex;
     justify-content: space-between;
     right: 20px;
     top: 0;
     position: absolute;
-  }
-  
+  } */
+/*   
   .note-type-btns > * {
     border: none;
     color: rgb(114 114 114);
@@ -52,4 +66,17 @@
     opacity: 0.87;
     background-color: rgba(95, 99, 104, 0.157);
     color: rgb(24, 24, 24);
-  }
+  } */
+
+.type-btns>button {
+  color: rgb(112, 107, 107);
+  background-color: inherit;
+  font-size: 1rem;
+  border-radius: 1em;
+  transition: color .4s, background-color .3s;
+}
+
+.type-btns>button:hover {
+  background-color: rgba(95, 99, 104, 0.157);
+
+}

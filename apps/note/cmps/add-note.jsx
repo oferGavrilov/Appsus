@@ -7,7 +7,7 @@ const { useState } = React
 export function AddNote({ onSaveNote }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.createEmptyNote())
-    const [noteType, setNoteType] = useState(null)
+    const [noteType, setNoteType] = useState('note-txt')
 
     function handleChange({ target }) {
         console.log(target)
@@ -20,9 +20,10 @@ export function AddNote({ onSaveNote }) {
     function onSubmitNote(ev) {
         ev.preventDefault()
         noteToAdd.type = noteType
-
-        const { type, txt, url } = noteToAdd
-        if (type === "note-txt" && !txt || type === "note-img" && !url) return
+        console.log(noteToAdd.todos)
+        const { type, txt, url , todos } = noteToAdd
+        if (type === "note-txt" && !txt || type === "note-img" && !url || type==='note-todos' && !todos.length) return
+        if (type === 'note-todos' && !todos[noteToAdd.length - 1]) todos.pop()
 
         onSaveNote(noteToAdd)
         setNoteToAdd(noteService.createEmptyNote())
@@ -47,7 +48,7 @@ export function AddNote({ onSaveNote }) {
                     name="txt"
                     placeholder="Take a note..."
                     value={noteToAdd.txt}
-                    autoComplete = 'off'
+                    autoComplete='off'
                     autoFocus
                     onChange={handleChange} />
             }
@@ -59,6 +60,7 @@ export function AddNote({ onSaveNote }) {
                         placeholder="Enter a title..."
                         value={noteToAdd.txt}
                         autoFocus
+                        autoComplete="off"
                         onChange={handleChange} />
 
                     <input type="text"
@@ -75,6 +77,7 @@ export function AddNote({ onSaveNote }) {
                         name="txt"
                         placeholder="Enter a title..."
                         value={noteToAdd.txt}
+                        autoComplete="off"
                         autoFocus
                         onChange={handleChange} />
 
@@ -87,9 +90,10 @@ export function AddNote({ onSaveNote }) {
                 </div>
             }
             {noteType === 'note-todos' &&
-                    <CreateTodos handleChange={handleChange} />
+                <CreateTodos handleChange={handleChange} />
             }
-            {noteType && <button>Create</button>}
+
+            {noteType && <button className="add-note-btn">Create</button>}
         </form>
         <NoteTypeBtns onChangeType={onChangeType} />
     </section>

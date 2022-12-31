@@ -1,9 +1,9 @@
 .note-text-container {
     display: flex;
     flex-direction: column;
-
+    width: 300px;
     /* background-color: #cfede3; */
-    width: fit-content;
+    /* width: fit-content; */
     padding: 1rem 2rem;
     /* margin: 1rem; */
     border-radius: 1em;
@@ -14,8 +14,8 @@
 .note-text {
     font-size: 1.1rem;
     margin-top: 5px;
-    font-family: open-sans;
-    padding: 16px;
+    /* font-family: open-sans; */
+    padding: 1rem;
     overflow: hidden;
     border: none;
     letter-spacing: 1px;

@@ -20,7 +20,4 @@ export function AppFilter() {
         </div>}
     </form>
 
-
-
-
 }

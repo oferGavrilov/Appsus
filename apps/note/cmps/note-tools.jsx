@@ -9,9 +9,7 @@ export function NoteTools({ note, onRemoveNote , onChangeColor , onDuplicateNote
     // console.log(note)
 
     const [togglePalette , setTogglePalette] = useState(false)
-    console.log(togglePalette)
     function closePalette() {
-        console.log('close palette')
         setTogglePalette(false)
     }
 

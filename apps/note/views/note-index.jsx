@@ -1,5 +1,5 @@
 
-import { AppFilter } from '../../../cmps/app-filter.jsx'
+// import { AppFilter } from '../../../cmps/app-filter.jsx'
 import {showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import { AddNote } from '../cmps/add-note.jsx'
 import { NoteFilter } from '../cmps/note-filter.jsx'
@@ -61,13 +61,20 @@ export function NoteIndex() {
             })
     }
 
+    function onToggleCheck(idx , noteId) {
+        noteService.toggleCheck(idx , noteId)
+            .then((notes) => {
+                setNotes(notes)
+            })
+    }
+
     return <section className='note-index'>
-        {/* <NoteFilter onSetFilter={onSetFilter} /> */}
+        <NoteFilter onSetFilter={onSetFilter} />
         {/* <AppFilter onSetFilter={onSetFilter} /> */}
 
         <AddNote onSaveNote={onSaveNote} />
 
-        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} onDuplicateNote={onDuplicateNote}/>
+        <NoteList notes={notes} onRemoveNote={onRemoveNote} onChangeColor={onChangeColor} onEditText={onEditText} onDuplicateNote={onDuplicateNote} onToggleCheck={onToggleCheck}/>
     </section>
 
 }
