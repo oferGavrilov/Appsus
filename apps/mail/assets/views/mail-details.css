@@ -1,27 +1,78 @@
 .mail-details {
     display: flex;
-    flex-direction: column;
+}
+
+.mail-details {
+    display: grid;
+    grid-template-columns: .7155fr 2.5fr;
+}
+
+.mail-details-actions>* {
+    padding-inline: 10px;
+    cursor: pointer;
+}
+
+.go-back {
+    margin-right: 11px;
 }
 
 .mail-details-container {
     display: grid;
-    /* grid-template-columns: 1fr 1fr; */
-    /* grid-template-rows: .5fr 1fr; */
-    gap: 10px;
+    grid-template-rows: 1fr 1.1fr 1fr 3fr;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
 }
 
-.mail-details-actions>* {
-    margin-right: 10px;
-    cursor: pointer;
+.mail-details-container>*:nth-child(even) {
+    padding-left: 55px;
+    padding-right: 20px;
+}
+
+.mail-details-subject {
+    font-size: 22px;
+    color: #1F1F1F;
 }
 
 .mail-details-header {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    grid-template-columns: 1fr 3fr 1fr .5fr;
+    color: #5E5E5E
 }
 
-.mail-details-container {
-    width: 75%;
-    margin: 0 auto;
+.sent-from {
+    font-size: 14px;
+    font-family: roboto-bold;
+    color: #1F1F1F;
 }
+
+.sent-at {
+    font-size: 12px;
+}
+
+.mail-details-body {
+    font-size: 16px;
+}
+
+
+
+/* // Mail-details -
+// Subject 22px font weight 400
+// from - 14px font weight 700
+// date - 12px font weight 400
+// body - 16px font weight 400
+
+
+// ////////
+// Colors
+
+// Header -
+// Color - black
+// Filter -
+// Backgruond - #f1f3f4
+
+// Mail-details -
+// Subject - #1F1F1F
+// from, sent at - #5E5E5E
+ */

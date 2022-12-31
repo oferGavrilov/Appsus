@@ -1,3 +1,6 @@
+
+import { mailService } from '../apps/mail/services/mail.service.js'
+
 function createEventEmitter() {
     const listenersMap = {}
     // Trick for DEBUG
@@ -28,6 +31,21 @@ export function showSuccessMsg(txt) {
 export function showErrorMsg(txt) {
     showUserMsg({ txt, type: 'error' })
 }
+
+// export function getUnreadMailsCount() {
+//     eventBusService.emit('get-unread-mails-count')
+// }
+
+// export function getUnreadMailsCount() {
+//     mailService.query()
+//         .then(mails => {
+//             return mails.reduce((acc, mail) => {
+//                 if (!mail.isRead) acc++
+//                 console.log('acc:', acc)
+//                 return acc
+//             }, 0)
+//         })
+// }
 
 
 // Service Testing:

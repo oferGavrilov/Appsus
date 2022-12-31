@@ -27,9 +27,6 @@
 /* Mail */
 @import '../../apps/mail/assets/views/mail-index.css';
 @import '../../apps/mail/assets/views/mail-details.css';
-@import '../../apps/mail/assets/views/mail-draft.css';
-@import '../../apps/mail/assets/views/mail-trash.css';
-@import '../../apps/mail/assets/views/sent-mails.css';
 
 @import '../../apps/mail/assets/cmps/compose-mail.css';
 @import '../../apps/mail/assets/cmps/mail-filter.css';

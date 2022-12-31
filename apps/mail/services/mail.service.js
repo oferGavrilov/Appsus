@@ -61,10 +61,10 @@ function remove(mailId) {
 }
 
 function getUnreadMailsCount(mails) {
-    // return mails.reduce((acc, mail) => {
-    //     if (!mail.isRead) acc++
-    //     return acc
-    // }, 0)
+    return mails.reduce((acc, mail) => {
+        if (!mail.isRead) acc++
+        return acc
+    }, 0)
 }
 
 function getUser() {

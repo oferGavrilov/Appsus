@@ -1,4 +1,4 @@
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 const { useNavigate, useLocation } = ReactRouterDOM
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
@@ -76,7 +76,7 @@ export function MailIndex() {
     }
 
     function onSelectMail(mailId) {
-        navigate(`/mail/inbox/${mailId}`)
+        navigate(`${location.pathname}/${mailId}`)
     }
 
     function onSendMail(mail) {
