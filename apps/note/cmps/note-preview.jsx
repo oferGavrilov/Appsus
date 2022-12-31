@@ -18,6 +18,7 @@ export function NotePreview(props) {
             case 'note-todos':
                 return <NoteTodos {...props} />
         }
+
     }    
 
    

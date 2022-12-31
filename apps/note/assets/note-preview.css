@@ -33,7 +33,7 @@
  .note-todo {
     font-size: 1.1rem;
     font-family: monospace;
-    padding: 1rem;
+    /* padding: 1rem; */
     overflow: hidden;
     border: none;
     letter-spacing: 1px;
@@ -52,4 +52,27 @@
 
  .checked {
     text-decoration: line-through;
+ }
+
+ .pin-btn{
+   position: absolute;
+   right: 15px;
+   top: 10px;
+   outline: none;
+   border: none;
+   background-color: unset;
+   cursor: pointer;
+   width: 30px;
+   height: 30px;
+   font-size: 1.05rem;
+   border-radius: 40px;
+   padding: none;
+   opacity: 0;
+   transition: 0.3s;
+   color: rgb(91, 91, 91);
+ }
+
+ .pin-btn.pinned{
+   opacity: 1;
+   color: gold;
  }
