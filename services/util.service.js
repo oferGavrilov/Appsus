@@ -7,7 +7,10 @@ export const utilService = {
     getDayName,
     getMonthName,
     getTextToDisplay,
-    getFormattedDate
+    getFormattedDate,
+    loadFromStorage,
+    saveToStorage,
+    getBoolean
 }
 
 function makeId(length = 6) {
@@ -72,4 +75,17 @@ function getFormattedDate(timeStamp) {
     const dateNum = date.getDate()
     const dateStr = getDayName(date)
     return `${month} ${dateNum}`
+}
+
+//book
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+    const data = localStorage.getItem(key)
+    return (data) ? JSON.parse(data) : undefined
+}
+function getBoolean() {
+    return Math.random() < 0.5
 }
