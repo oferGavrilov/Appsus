@@ -9,7 +9,7 @@ import { utilService } from '../../../services/util.service.js'
 export function MailDetails() {
     const [selectedMail, setSelectedMail] = useState(null)
 
-    const { mailId } = useParams()
+    const { mailId, category } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export function MailDetails() {
     }
 
     function onGoBack() {
-        navigate('/mail/inbox')
+        navigate(`/mail/${category}`)
     }
 
     function onDeleteMail() {
@@ -51,25 +51,44 @@ export function MailDetails() {
             .finally(onGoBack)
     }
 
-    if (!selectedMail) return <h2>Loading</h2>
+    if (!selectedMail) return <h2>Loading..</h2>
     return <section className='mail-details'>
 
-        <div className='mail-details-actions'>
-            <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
-            <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
-            <i className='move-mail fa-regular fa-folder' title='Move to'></i>
-            <i className='unread fa-regular fa-envelope' title='Mark as unread'></i>
-        </div>
-        <div className="mail-details-container">
+        <aside className='mail-nav-container'>
+
+            <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
+                <i className="fa-solid fa-pencil compose-icon"></i>
+                Compose</button>
+
+            {/* <MailNav unreadMailsCount={unreadMailsCount} /> */}
+            <MailNav />
+        </aside>
+
+        <div className='mail-details-container'>
+            <div className='mail-details-actions'>
+                <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
+                <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
+                <i className='move-mail fa-regular fa-folder' title='Move to'></i>
+                <i className='unread fa-regular fa-envelope' title='Mark as unread'></i>
+            </div>
             <div className='mail-details-subject'>{selectedMail.subject}</div>
-            <header className='mail-details-header'>
-                <h4 className='sent-from'>{selectedMail.from}</h4>
-                <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
-                <button>⭐</button>
-            </header>
-            <main className='mail-details-body'>
+            <div className="mail-details-content">
+                <div className='mail-details-header'>
+                    <i className="fa-solid fa-user-large user-icon"></i>
+                    <div className='sent-from'>{selectedMail.from}</div>
+                    <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
+                    <div className='mail-star'>
+                        {selectedMail.isStarred ?
+                            <i className='fa-solid fa-star star mail-starred' title='Starred'></i>
+                            :
+                            <i className='fa-regular fa-star star' title='Starred'></i>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className='mail-details-body'>
                 {selectedMail.body}
-            </main>
+            </div>
         </div>
     </section>
 }

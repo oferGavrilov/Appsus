@@ -6,8 +6,9 @@
     overflow-y: scroll;
     height: 90vh;
     margin-right: 10px;
-    padding-inline-start: 20px;
+    /* padding-inline-start: 20px; */
     padding-inline-end: 5px;
+    background: #ffffff;
 }
 
 

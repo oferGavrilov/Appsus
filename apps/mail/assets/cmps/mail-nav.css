@@ -1,3 +1,7 @@
+.mail-nav-container {
+    padding-inline-end: 15px;
+}
+
 .mail-nav {
     display: flex;
     width: 240px;

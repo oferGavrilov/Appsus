@@ -7,18 +7,10 @@
     /* font-family: roboto; */
 }
 
-/* .mail-header-container {
-    display: flex;
-} */
 
-/* .mail-main-content {
-    display: flex;
-    gap: 10px;
-} */
 .mail-main-content {
     display: grid;
     grid-template-columns: .7155fr 2.5fr;
-    gap: 15px;
 }
 
 .btn-compose {

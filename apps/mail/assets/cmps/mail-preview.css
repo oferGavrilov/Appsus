@@ -1,6 +1,6 @@
 .mail-preview {
     display: grid;
-    grid-template-columns: 51.56px 168px 1fr .1fr .1fr .5fr;
+    grid-template-columns: 51.56px 190px 4.5fr .5fr;
     height: 40px;
     padding-block: 10px;
     color: #202124;
@@ -37,6 +37,12 @@
     padding-right: 20px;
 }
 
+.mail-preview.read .mail-body,
+.mail-body {
+    color: #5F6368;
+    font-family: roboto-reg;
+}
+
 .star {
     padding-left: 10px;
     color: #5F6368;
@@ -64,4 +70,83 @@
     color: #5F6368;
 }
 
+.mail-actions {
+    display: flex;
+    /* gap: 5px; */
+    justify-content: space-evenly;
+}
+
 /* ICONS HOVER :opacity: 0.32; */
+
+/* 
+.mail-preview {
+    display: grid;
+    grid-template-columns: 51.56px 190px 2.5fr .5fr;
+    height: 40px;
+    padding-block: 10px;
+    color: #202124;
+    box-shadow: inset 0px -0.4px 0px rgb(0 0 0 / 20%);
+    font-family: roboto-bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.mail-preview.read {
+    background: rgb(242, 246, 252);
+    font-family: roboto-reg;
+}
+
+.mail-preview:hover {
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+        0 1px 2px 0 rgb(60 64 67 / 30%),
+        0 1px 3px 1px rgb(60 64 67 / 15%);
+    position: relative;
+    z-index: 1;
+}
+
+.mail-from {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 40px;
+}
+
+.mail-subject {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 20px;
+}
+
+.mail-preview.read .mail-body,
+.mail-body {
+    color: #5F6368;
+    font-family: roboto-reg;
+}
+
+.star {
+    padding-left: 10px;
+    color: #5F6368;
+    opacity: 0.32;
+}
+
+.mail-preview:hover .star {
+    opacity: 1;
+    color: rgb(32, 33, 36);
+}
+
+.mail-star .star.mail-starred {
+    opacity: 1;
+    color: gold;
+
+}
+
+.mail-date-sent {
+    justify-self: end;
+    font-size: 12px;
+    padding-inline-end: 10px;
+}
+
+.mail-date-sent.read {
+    color: #5F6368;
+} */
