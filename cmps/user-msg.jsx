@@ -21,6 +21,7 @@ export function UserMsg() {
 
   function closeMsg() {
     setMsg(null)
+    clearTimeout(timeoutIdRef.current)
   }
 
   if (!msg) return <span></span>

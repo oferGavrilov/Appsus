@@ -9,5 +9,4 @@ export function MailNav({ unreadMailsCount }) {
         <NavLink to='/mail/sent'><i className='fa-solid fa-caret-right sent-icon'></i>Sent</NavLink>
         <NavLink to='/mail/trash'><i className='fa-solid fa-trash-can trash-icon'></i>Trash</NavLink>
     </nav>
-
 }
