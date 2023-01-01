@@ -7,14 +7,14 @@
     padding-inline-start: 10px;
     color: #202124;
     box-shadow: inset 0px -0.4px 0px rgb(0 0 0 / 20%);
-    font-family: roboto-bold;
+    font-family: robotobold;
     font-size: 14px;
     cursor: pointer;
 }
 
 .mail-preview.read {
     background: rgb(242, 246, 252);
-    font-family: roboto-reg;
+    font-family: robotoreg;
 }
 
 .mail-preview:hover {
@@ -43,7 +43,7 @@
 .mail-preview.read .mail-body,
 .mail-body {
     color: #5F6368;
-    font-family: roboto-reg;
+    font-family: robotoreg;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

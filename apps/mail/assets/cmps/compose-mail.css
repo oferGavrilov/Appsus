@@ -12,7 +12,7 @@
     display: grid;
     grid-template-rows: .1fr 4fr;
     padding-inline: 10px;
-    font-family: roboto-med;
+    font-family: robotomed;
 }
 
 
@@ -66,11 +66,3 @@
     background-color: #1b61d1;
     box-shadow: 0 1px 2px 0 rgba(26, 115, 232, 0.451), 0 1px 3px 1px rgba(26, 115, 232, 0.302);
 }
-
-
-/* // Compose - Color
-// Background - (255,255,255)
-// To - Color -#444746
-// Body - #222222
-// Funcs - #444444
-// Send btn - Color -  */

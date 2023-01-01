@@ -4,22 +4,23 @@
 
 /* typography */
 @font-face {
-    font-family: roboto-reg;
-    src: url(assets/fonts/Roboto-Regular.ttf)
+    font-family: robotoreg;
+    src: url(../../fonts/Roboto-Regular.ttf)
 }
 
 @font-face {
-    font-family: roboto-med;
-    src: url(assets/fonts/Roboto-Medium.ttf);
+    font-family: robotomed;
+    src: url(../../fonts/Roboto-Medium.ttf);
 }
 
 @font-face {
-    font-family: roboto-bold;
-    src: url(assets/fonts/Roboto-Bold.ttf);
+    font-family: robotobold;
+    /* src: url(./assets/fonts/Roboto-Bold.ttf); */
+    src: url(../../fonts/Roboto-Bold.ttf);
 }
 
 html {
-    font-family: roboto-reg;
+    font-family: robotoreg;
 }
 
 body {

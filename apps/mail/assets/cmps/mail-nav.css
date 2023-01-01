@@ -26,7 +26,7 @@
 .mail-nav a.active {
     background: rgb(211, 227, 253);
     color: #001D35;
-    font-family: roboto-bold;
+    font-family: robotobold;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
