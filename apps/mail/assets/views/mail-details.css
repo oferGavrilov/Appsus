@@ -1,9 +1,11 @@
 .mail-details {
     display: grid;
-    grid-template-columns: .7155fr 2.5fr;
+    /* grid-template-columns: 0.7155fr 2.5fr; */
+    grid-template-columns: 0.2fr 1fr;
+    min-height: calc(100vh - 80px);
 }
 
-.mail-details-actions>* {
+.mail-details-actions > * {
     padding-inline: 10px;
     cursor: pointer;
 }
@@ -17,38 +19,72 @@
     grid-template-rows: 1fr 1.1fr 1fr 3fr;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: #ffffff;
+    border-radius: 1rem;
 }
 
 .user-icon {
     padding-left: 9px;
 }
 
-.mail-content-container>*:nth-child(even) {
+.mail-content-container > *:nth-child(even) {
     padding-left: 55px;
     padding-right: 20px;
 }
 
 .mail-details-subject {
     font-size: 22px;
-    color: #1F1F1F;
+    color: #1f1f1f;
 }
 
 .mail-details-header {
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 3fr 1fr .5fr;
-    color: #5E5E5E
+    /* grid-template-columns: 1fr 3fr 1fr 0.5fr; */
+    grid-template-columns: 0.5fr 5fr 1.5fr 1.5fr;
+    grid-template-rows: 1fr 1fr;
+
+    color: #5e5e5e;
+}
+
+.user-img-wrapper {
+    grid-area: 1/1/3/2;
+    width: 45px;
+    margin-left: 1rem;
+    border-radius: 50%;
+}
+
+.user-img-wrapper img {
+    border-radius: 50%;
 }
 
 .sent-from {
-    font-size: 14px;
     font-family: roboto-bold;
-    color: #1F1F1F;
+    color: #1f1f1f;
+}
+
+.sent-from span {
+    font-size: 14px;
+    /* font-family: roboto-regular; */
+    opacity: 0.7;
 }
 
 .sent-at {
     font-size: 12px;
+}
+
+.star {
+    cursor: pointer;
+    opacity: 0.32;
+}
+
+.mail-details .star:hover,
+.star.starred {
+    opacity: 1;
+}
+
+.star.starred {
+    color: gold;
 }
 
 .mail-details-body {

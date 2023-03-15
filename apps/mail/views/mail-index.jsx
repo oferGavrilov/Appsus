@@ -10,7 +10,6 @@ const { useState, useEffect } = React
 const { useNavigate, useLocation } = ReactRouterDOM
 
 export function MailIndex() {
-
     const [mails, setMails] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [unreadMailsCount, setUnreadMailsCount] = useState(null)
@@ -26,16 +25,13 @@ export function MailIndex() {
     }, [filterBy, location.pathname])
 
     useEffect(() => {
-        loadUnreadMailsCount(mails)
-    }, [mails])
-
-    useEffect(() => {
         onSetSort()
     }, [sortBy])
 
     function onDeleteMail(ev, mail) {
         ev.stopPropagation()
-        mailService.deleteMail(mail)
+        mailService
+            .deleteMail(mail)
             .then(deletedMail => {
                 const updatedMails = mails.filter(mail => mail.id !== deletedMail.id)
                 showSuccessMsg('Mail deleted successfully')
@@ -48,21 +44,26 @@ export function MailIndex() {
 
     function loadMails() {
         filterBy.status = location.pathname.slice(6)
-        mailService.query(filterBy)
+        mailService
+            .query(filterBy)
             .then(mails => {
                 setMails(mails)
+                !unreadMailsCount && loadUnreadMailsCount(mails)
+                setIsLoading(false)
             })
-            .catch(err => showErrorMsg('Failed to load mails'))
+            .catch(err => {
+                console.log('Failed to load mails with error', err)
+                showErrorMsg('Failed to load mails')
+            })
     }
 
-    function loadUnreadMailsCount() {
+    function loadUnreadMailsCount(mails) {
         if (!mails.length) return
         const mailsCount = mails.reduce((acc, mail) => {
             if (!mail.isRead) acc++
             return acc
         }, 0)
         setUnreadMailsCount(mailsCount)
-        setIsLoading(false)
     }
 
     function onSetFilter(filterBy) {
@@ -80,11 +81,12 @@ export function MailIndex() {
     }
 
     function onSendMail(mail) {
-        mailService.save(mail)
-            .then((mail) => {
+        mailService
+            .save(mail)
+            .then(mail => {
                 showSuccessMsg('Mail sent')
             })
-            .catch((err) => {
+            .catch(err => {
                 showErrorMsg('Failed to send mail')
             })
         onDoneComposing()
@@ -97,8 +99,12 @@ export function MailIndex() {
     function onToggleRead(ev, mail) {
         ev.stopPropagation()
         mail.isRead = !mail.isRead
-        setMails([...mails])
-        mailService.save(mail)
+        setUnreadMailsCount(prevCount => {
+            return mail.isRead ? prevCount - 1 : prevCount + 1
+        })
+        mailService
+            .save(mail)
+            .then(() => showSuccessMsg(`Conversation marked as ${mail.isRead ? 'read' : 'unread'}.`))
             .catch(err => console.log('Had trouble updating mail read at mail list', err))
     }
 
@@ -106,35 +112,43 @@ export function MailIndex() {
         ev.stopPropagation()
         mail.isStarred = !mail.isStarred
         setMails([...mails])
-        mailService.save(mail)
-            .then(() => showSuccessMsg('Mail starred successfully'))
-            .catch(err => console.log('Had trouble updating mail star at mail list', err))
+        mailService.save(mail).catch(err => showErrorMsg('Please try again later'))
     }
 
-
-    return <section className='mail-index'>
-        <section className='filter-section'>
-            <MailFilter onSetFilter={onSetFilter} />
-            <button onClick={() => setSortBy('date')} className='btn-sort'>Sort by date</button>
-            <button onClick={() => setSortBy('subject')} className='btn-sort'>Sort by subject</button>
-        </section>
-        {
-            isLoading ? <h2>Loading..</h2>
-                : <main className='mail-main-content'>
+    return (
+        <section className='mail-index'>
+            <section className='filter-section'>
+                <MailFilter onSetFilter={onSetFilter} />
+                <button onClick={() => setSortBy('date')} className='btn-sort'>
+                    Sort by date
+                </button>
+                <button onClick={() => setSortBy('subject')} className='btn-sort'>
+                    Sort by subject
+                </button>
+            </section>
+            {isLoading ? (
+                <h2>Loading..</h2>
+            ) : (
+                <main className='mail-main-content'>
                     <aside className='mail-nav-container'>
-
                         <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
-                            <i className="fa-solid fa-pencil compose-icon"></i>
-                            Compose</button>
+                            <i className='fa-solid fa-pencil compose-icon'></i>
+                            Compose
+                        </button>
 
                         <MailNav unreadMailsCount={unreadMailsCount} />
                     </aside>
-                    <MailList mails={mails} onSelectMail={onSelectMail}
-                        onDeleteMail={onDeleteMail} onToggleRead={onToggleRead} onToggleStarred={onToggleStarred} />
+                    <MailList
+                        mails={mails}
+                        onSelectMail={onSelectMail}
+                        onDeleteMail={onDeleteMail}
+                        onToggleRead={onToggleRead}
+                        onToggleStarred={onToggleStarred}
+                    />
                 </main>
-        }
+            )}
 
-        {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
-    </section >
+            {isComposingOn && <ComposeMail onSendMail={onSendMail} onDoneComposing={onDoneComposing} />}
+        </section>
+    )
 }
-

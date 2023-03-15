@@ -17,39 +17,36 @@ export const mailService = {
     getUnreadMailsCount,
     deleteMail,
     move,
-    setMailsSort
+    setMailsSort,
 }
 
 function query(filterBy = getDefaultFilter()) {
+    return storageService.query(MAIL_KEY).then(mails => {
+        if (filterBy.status === 'starred') {
+            mails = mails.filter(mail => mail.isStarred)
+        } else {
+            mails = mails.filter(mail => mail.status === filterBy.status)
+        }
 
-    return storageService.query(MAIL_KEY)
-        .then(mails => {
+        if (filterBy.txt) {
+            const txtRegex = new RegExp(filterBy.txt, 'i')
+            mails = mails.filter(mail => txtRegex.test(mail.subject))
+        }
+        if (filterBy.isRead !== null) {
+            // Change this!!
+            mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+        }
 
-            if (filterBy.status === 'starred') {
-                mails = mails.filter(mail => mail.isStarred)
-            } else {
-                mails = mails.filter(mail => mail.status === filterBy.status)
-            }
+        if (filterBy.isStarred !== null) {
+            mails = mails.filter(mail => mail.isStarred)
+        }
 
-            if (filterBy.txt) {
-                const txtRegex = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => txtRegex.test(mail.subject))
-            }
-            if (filterBy.isRead !== null) {
-                // Change this!!
-                mails = mails.filter(mail => mail.isRead === filterBy.isRead)
-            }
+        if (filterBy.labels.length) {
+            mails = mails.filter(mail => filterBy.labels.find(label => mail.labels.includes(label)))
+        }
 
-            if (filterBy.isStarred !== null) {
-                mails = mails.filter(mail => mail.isStarred)
-            }
-
-            if (filterBy.labels.length) {
-                mails = mails.filter(mail => filterBy.labels.find(label => mail.labels.includes(label)))
-            }
-
-            return mails
-        })
+        return mails
+    })
 }
 
 function get(mailId) {
@@ -70,7 +67,7 @@ function getUnreadMailsCount(mails) {
 function getUser() {
     return {
         email: 'momo@appsus.com',
-        fullname: 'Momo Ben Momo'
+        fullname: 'Momo Ben Momo',
     }
 }
 
@@ -100,14 +97,16 @@ function getDefaultFilter() {
         txt: '',
         isRead: null,
         isStarred: null,
-        labels: []
+        labels: [],
     }
 }
 
 function setMailsSort(mails, sortBy) {
     switch (sortBy) {
-        case 'subject': return (mails.sort((m1, m2) => m1.subject.localeCompare(m2.subject)))
-        case 'date': return (mails.sort((m1, m2) => m2.sentAt - m1.sentAt))
+        case 'subject':
+            return mails.sort((m1, m2) => m1.subject.localeCompare(m2.subject))
+        case 'date':
+            return mails.sort((m1, m2) => m2.sentAt - m1.sentAt)
     }
 }
 
@@ -122,7 +121,7 @@ function getEmptyMail() {
         to: '',
         status: 'sent',
         isStarred: false,
-        labels: []
+        labels: [],
     }
 }
 
@@ -135,7 +134,6 @@ function loadMailsFromStorage() {
 }
 
 function _createMails() {
-
     let mails = loadMailsFromStorage()
     if (!mails || !mails.length) {
         mails = [
@@ -151,11 +149,11 @@ function _createMails() {
                 If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 5000),
+                sentAt: Date.now() - 5000,
                 removedAt: null,
                 from: 'itzik@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
+                status: 'inbox',
             },
             {
                 id: utilService.makeId(4),
@@ -165,12 +163,13 @@ function _createMails() {
                 I am emailing you today to let you know I have written the post response.                
                 I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
                 isRead: false,
-                sentAt: (Date.now() - 14500),
+                sentAt: Date.now() - 14500,
                 removedAt: null,
                 from: 'spamalot@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
-            }, {
+                status: 'inbox',
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Your readers will love this!',
                 body: `Hi Momo
@@ -178,13 +177,14 @@ function _createMails() {
                 We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
                 `,
                 isRead: true,
-                sentAt: (Date.now() - 34000000),
+                sentAt: Date.now() - 34000000,
                 removedAt: null,
                 from: 'spamabit@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We want to partner with you',
                 body: `Hello There!
@@ -194,13 +194,14 @@ function _createMails() {
                 Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
                 `,
                 isRead: false,
-                sentAt: (Date.now() - 10000000),
+                sentAt: Date.now() - 10000000,
                 removedAt: null,
                 from: 'dontreply@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'About your free consultation with YouTube!',
                 body: `Hi Momo,
@@ -208,12 +209,13 @@ function _createMails() {
                 If you have any questions about the call, just reply to this email. I will get back to you ASAP.
                 Thank you,`,
                 isRead: true,
-                sentAt: (Date.now() - 10505000),
+                sentAt: Date.now() - 10505000,
                 from: 'youtube@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'I just listened to your podcast!',
                 body: `Hi Momo
@@ -223,12 +225,13 @@ function _createMails() {
                 Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 12000000),
+                sentAt: Date.now() - 12000000,
                 from: 'fan@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We cordially invite you to our wedding',
                 body: `Hi Momo
@@ -238,12 +241,13 @@ function _createMails() {
                 Please replay to this email your attendance status.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 15000000),
+                sentAt: Date.now() - 15000000,
                 from: 'issac@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Help us to help serve you better',
                 body: `Hi Momo
@@ -252,12 +256,12 @@ function _createMails() {
                 Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
                 Thank you`,
                 isRead: true,
-                sentAt: (Date.now() - 315000000),
+                sentAt: Date.now() - 315000000,
                 removedAt: null,
                 from: 'avi@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
+                isStarred: true,
             },
 
             {
@@ -272,11 +276,11 @@ function _createMails() {
                 If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 5000),
+                sentAt: Date.now() - 5000,
                 removedAt: null,
                 from: 'itzik@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
+                status: 'inbox',
             },
             {
                 id: utilService.makeId(4),
@@ -286,12 +290,13 @@ function _createMails() {
                 I am emailing you today to let you know I have written the post response.                
                 I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
                 isRead: false,
-                sentAt: (Date.now() - 14500),
+                sentAt: Date.now() - 14500,
                 removedAt: null,
                 from: 'spamalot@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
-            }, {
+                status: 'inbox',
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Your readers will love this!',
                 body: `Hi Momo
@@ -299,13 +304,14 @@ function _createMails() {
                 We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
                 `,
                 isRead: true,
-                sentAt: (Date.now() - 34000000),
+                sentAt: Date.now() - 34000000,
                 removedAt: null,
                 from: 'spamabit@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We want to partner with you',
                 body: `Hello There!
@@ -315,13 +321,14 @@ function _createMails() {
                 Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
                 `,
                 isRead: false,
-                sentAt: (Date.now() - 10000000),
+                sentAt: Date.now() - 10000000,
                 removedAt: null,
                 from: 'dontreply@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'About your free consultation with YouTube!',
                 body: `Hi Momo,
@@ -329,12 +336,13 @@ function _createMails() {
                 If you have any questions about the call, just reply to this email. I will get back to you ASAP.
                 Thank you,`,
                 isRead: true,
-                sentAt: (Date.now() - 10505000),
+                sentAt: Date.now() - 10505000,
                 from: 'youtube@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'I just listened to your podcast!',
                 body: `Hi Momo
@@ -344,12 +352,13 @@ function _createMails() {
                 Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 12000000),
+                sentAt: Date.now() - 12000000,
                 from: 'fan@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We cordially invite you to our wedding',
                 body: `Hi Momo
@@ -359,12 +368,13 @@ function _createMails() {
                 Please replay to this email your attendance status.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 15000000),
+                sentAt: Date.now() - 15000000,
                 from: 'issac@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Help us to help serve you better',
                 body: `Hi Momo
@@ -373,12 +383,12 @@ function _createMails() {
                 Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
                 Thank you`,
                 isRead: true,
-                sentAt: (Date.now() - 315000000),
+                sentAt: Date.now() - 315000000,
                 removedAt: null,
                 from: 'avi@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
+                isStarred: true,
             },
 
             {
@@ -393,11 +403,11 @@ function _createMails() {
                 If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 5000),
+                sentAt: Date.now() - 5000,
                 removedAt: null,
                 from: 'itzik@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
+                status: 'inbox',
             },
             {
                 id: utilService.makeId(4),
@@ -407,12 +417,13 @@ function _createMails() {
                 I am emailing you today to let you know I have written the post response.                
                 I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
                 isRead: false,
-                sentAt: (Date.now() - 14500),
+                sentAt: Date.now() - 14500,
                 removedAt: null,
                 from: 'spamalot@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
-            }, {
+                status: 'inbox',
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Your readers will love this!',
                 body: `Hi Momo
@@ -420,13 +431,14 @@ function _createMails() {
                 We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
                 `,
                 isRead: true,
-                sentAt: (Date.now() - 34000000),
+                sentAt: Date.now() - 34000000,
                 removedAt: null,
                 from: 'spamabit@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We want to partner with you',
                 body: `Hello There!
@@ -436,13 +448,14 @@ function _createMails() {
                 Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
                 `,
                 isRead: false,
-                sentAt: (Date.now() - 10000000),
+                sentAt: Date.now() - 10000000,
                 removedAt: null,
                 from: 'dontreply@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'About your free consultation with YouTube!',
                 body: `Hi Momo,
@@ -450,12 +463,13 @@ function _createMails() {
                 If you have any questions about the call, just reply to this email. I will get back to you ASAP.
                 Thank you,`,
                 isRead: true,
-                sentAt: (Date.now() - 10505000),
+                sentAt: Date.now() - 10505000,
                 from: 'youtube@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'I just listened to your podcast!',
                 body: `Hi Momo
@@ -465,12 +479,13 @@ function _createMails() {
                 Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 12000000),
+                sentAt: Date.now() - 12000000,
                 from: 'fan@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We cordially invite you to our wedding',
                 body: `Hi Momo
@@ -480,12 +495,13 @@ function _createMails() {
                 Please replay to this email your attendance status.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 15000000),
+                sentAt: Date.now() - 15000000,
                 from: 'issac@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Help us to help serve you better',
                 body: `Hi Momo
@@ -494,12 +510,12 @@ function _createMails() {
                 Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
                 Thank you`,
                 isRead: true,
-                sentAt: (Date.now() - 315000000),
+                sentAt: Date.now() - 315000000,
                 removedAt: null,
                 from: 'avi@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
+                isStarred: true,
             },
 
             {
@@ -514,11 +530,11 @@ function _createMails() {
                 If you have any questions about the product, please respond to this email or use the live chat on the product page. Our staff is waiting to respond to you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 5000),
+                sentAt: Date.now() - 5000,
                 removedAt: null,
                 from: 'itzik@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
+                status: 'inbox',
             },
             {
                 id: utilService.makeId(4),
@@ -528,12 +544,13 @@ function _createMails() {
                 I am emailing you today to let you know I have written the post response.                
                 I think you will find it useful, as it is relevant to your post . Could you take a quick peek at it and let me know what you think?`,
                 isRead: false,
-                sentAt: (Date.now() - 14500),
+                sentAt: Date.now() - 14500,
                 removedAt: null,
                 from: 'spamalot@appsus.com',
                 to: 'momo@appsus.com',
-                status: 'inbox'
-            }, {
+                status: 'inbox',
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Your readers will love this!',
                 body: `Hi Momo
@@ -541,13 +558,14 @@ function _createMails() {
                 We have a product like it called bugSus that we just launched, and we were wondering if you'd like to write a review about it
                 `,
                 isRead: true,
-                sentAt: (Date.now() - 34000000),
+                sentAt: Date.now() - 34000000,
                 removedAt: null,
                 from: 'spamabit@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We want to partner with you',
                 body: `Hello There!
@@ -557,13 +575,14 @@ function _createMails() {
                 Please let me know if you would like to promote it. We'll send you a sample of the product. We can also help you create the content, and we'll pay you for your time.
                 `,
                 isRead: false,
-                sentAt: (Date.now() - 10000000),
+                sentAt: Date.now() - 10000000,
                 removedAt: null,
                 from: 'dontreply@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'About your free consultation with YouTube!',
                 body: `Hi Momo,
@@ -571,12 +590,13 @@ function _createMails() {
                 If you have any questions about the call, just reply to this email. I will get back to you ASAP.
                 Thank you,`,
                 isRead: true,
-                sentAt: (Date.now() - 10505000),
+                sentAt: Date.now() - 10505000,
                 from: 'youtube@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
-            }, {
+                isStarred: true,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'I just listened to your podcast!',
                 body: `Hi Momo
@@ -586,12 +606,13 @@ function _createMails() {
                 Would you be interested? I will be happy to interview you at a date and time that is convenient for you.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 12000000),
+                sentAt: Date.now() - 12000000,
                 from: 'fan@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'We cordially invite you to our wedding',
                 body: `Hi Momo
@@ -601,12 +622,13 @@ function _createMails() {
                 Please replay to this email your attendance status.
                 Thank you`,
                 isRead: false,
-                sentAt: (Date.now() - 15000000),
+                sentAt: Date.now() - 15000000,
                 from: 'issac@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: false
-            }, {
+                isStarred: false,
+            },
+            {
                 id: utilService.makeId(4),
                 subject: 'Help us to help serve you better',
                 body: `Hi Momo
@@ -615,14 +637,13 @@ function _createMails() {
                 Please be honest with your responses. If you didn't like something, don't be afraid to point it out. We take feedback very seriously and are ready to make changes to help serve you better.
                 Thank you`,
                 isRead: true,
-                sentAt: (Date.now() - 315000000),
+                sentAt: Date.now() - 315000000,
                 removedAt: null,
                 from: 'avi@appsus.com',
                 to: 'momo@appsus.com',
                 status: 'inbox',
-                isStarred: true
+                isStarred: true,
             },
-
 
             {
                 id: utilService.makeId(4),
@@ -631,12 +652,12 @@ function _createMails() {
                     you didn't pick my call, call me back
                     `,
                 isRead: true,
-                sentAt: (Date.now() - 10000000),
+                sentAt: Date.now() - 10000000,
                 removedAt: null,
                 status: 'sent',
                 to: 'avi233@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: false
+                isStarred: false,
             },
 
             {
@@ -646,11 +667,11 @@ function _createMails() {
                     try contacting me when im back.
                 Thank you, Momo`,
                 isRead: true,
-                sentAt: (Date.now() - 20000000),
+                sentAt: Date.now() - 20000000,
                 status: 'trash',
                 to: 'greener@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: false
+                isStarred: false,
             },
 
             {
@@ -659,11 +680,11 @@ function _createMails() {
                 body: `Hi i don't have a job for a while now
                     please fund me when im watching tv`,
                 isRead: true,
-                sentAt: (Date.now() - 30000000),
+                sentAt: Date.now() - 30000000,
                 status: 'sent',
                 to: 'bituahleumi@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: false
+                isStarred: false,
             },
 
             {
@@ -673,11 +694,11 @@ function _createMails() {
                        don't be afraid to send me pitzoi.
                 Thank you, Momo`,
                 isRead: true,
-                sentAt: (Date.now() - 40000000),
+                sentAt: Date.now() - 40000000,
                 status: 'sent',
                 to: 'wolt@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: true
+                isStarred: true,
             },
 
             {
@@ -688,11 +709,11 @@ function _createMails() {
                 Please be honest with your responses. If you didn't like something, don't point it out. .
                 Thank you, Momo`,
                 isRead: true,
-                sentAt: (Date.now() - 50000000),
+                sentAt: Date.now() - 50000000,
                 status: 'sent',
                 to: 'foodservice@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: false
+                isStarred: false,
             },
 
             {
@@ -701,11 +722,11 @@ function _createMails() {
                 body: `Hi,
                 Thank you, Momo`,
                 isRead: true,
-                sentAt: (Date.now() - 60000000),
+                sentAt: Date.now() - 60000000,
                 status: 'sent',
                 to: 'atzlanim@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: true
+                isStarred: true,
             },
 
             {
@@ -714,18 +735,13 @@ function _createMails() {
                 body: `Hi , please send help
                 Thank you, Momo`,
                 isRead: true,
-                sentAt: (Date.now() - 70000000),
+                sentAt: Date.now() - 70000000,
                 status: 'sent',
                 to: 'sos@appsus.com',
                 from: 'momo@appsus.com',
-                isStarred: true
-            }
-
+                isStarred: true,
+            },
         ]
     }
     saveMailsToStorage(mails)
 }
-
-
-
-

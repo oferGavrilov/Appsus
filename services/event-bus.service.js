@@ -1,12 +1,10 @@
-
-
 function createEventEmitter() {
     const listenersMap = {}
     // Trick for DEBUG
     window.mapmap = listenersMap
     return {
         on(evName, listener) {
-            listenersMap[evName] = (listenersMap[evName]) ? [...listenersMap[evName], listener] : [listener]
+            listenersMap[evName] = listenersMap[evName] ? [...listenersMap[evName], listener] : [listener]
             return () => {
                 listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
             }
@@ -14,14 +12,14 @@ function createEventEmitter() {
         emit(evName, data) {
             if (!listenersMap[evName]) return
             listenersMap[evName].forEach(listener => listener(data))
-        }
+        },
     }
 }
 
 export const eventBusService = createEventEmitter()
 
 export function showUserMsg(msg) {
-    console.log('user msg');
+    console.log('user msg')
     eventBusService.emit('show-user-msg', msg)
 }
 
@@ -47,7 +45,6 @@ export function showErrorMsg(txt) {
 //         })
 // }
 
-
 // Service Testing:
 // eventBus.on('muk', (data)=>{
 //     console.log('Got Muk with data:', data)
@@ -63,7 +60,6 @@ export function showErrorMsg(txt) {
 // setTimeout(()=>{
 //     unsubscribe()
 // }, 2000)
-
 
 // eventBus.emit('puk', 100)
 

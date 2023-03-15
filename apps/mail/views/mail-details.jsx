@@ -17,20 +17,22 @@ export function MailDetails() {
     }, [])
 
     function loadSelectedMail() {
-        mailService.get(mailId)
-            .then((mail) => {
+        mailService
+            .get(mailId)
+            .then(mail => {
                 setSelectedMail(mail)
-                if (!mail.isRead) setMailIsRead(mail)
+                if (!mail.isRead) setIsMailRead(mail, true)
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log('Had issues with loading mail at mail-details', err)
                 onGoBack()
                 showErrorMsg('Failed loading mail')
             })
     }
 
-    function setMailIsRead(mail) {
-        mailService.save({ ...mail, isRead: true })
+    function setIsMailRead(mail, isRead) {
+        mailService.save({ ...mail, isRead })
+        if (!isRead) onGoBack()
     }
 
     function onGoBack() {
@@ -38,7 +40,8 @@ export function MailDetails() {
     }
 
     function onDeleteMail() {
-        mailService.move(selectedMail, 'trash')
+        mailService
+            .move(selectedMail, 'trash')
             .then(res => {
                 showSuccessMsg('Mail moved to Trash')
             })
@@ -49,42 +52,56 @@ export function MailDetails() {
             .finally(onGoBack)
     }
 
+    function onToggleStarred() {
+        setSelectedMail(prevMail => ({ ...prevMail, isStarred: !prevMail.isStarred }))
+        mailService.save(selectedMail).catch(err => showErrorMsg('Please try again later.'))
+    }
+
     if (!selectedMail) return <h2>Loading..</h2>
-    return <section className='mail-details'>
+    return (
+        <section className='mail-details'>
+            <aside className='mail-nav-container'>
+                <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
+                    <i className='fa-solid fa-pencil compose-icon'></i>
+                    Compose
+                </button>
+                <MailNav />
+            </aside>
 
-        <aside className='mail-nav-container'>
+            <div className='mail-content-container'>
+                <div className='mail-details-actions'>
+                    <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
+                    <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
+                    <i
+                        className='unread fa-regular fa-envelope'
+                        onClick={() => setIsMailRead(false)}
+                        title='Mark as unread'
+                    ></i>
+                </div>
+                <div className='mail-details-subject'>{selectedMail.subject}</div>
+                <div className='mail-details-content'>
+                    <div className='mail-details-header'>
+                        {/* <i className='fa-solid fa-user-large user-icon'></i> */}
+                        <div className='user-img-wrapper'>
+                            <img src='https://lh3.googleusercontent.com/a/default-user=s40-p' alt='' />
+                        </div>
+                        <div className='sent-from'>
+                            {utilService.getFormattedName(selectedMail.from)}
+                            <span>{selectedMail.from}</span>
+                        </div>
+                        <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
 
-            <button className='btn-compose' onClick={() => setIsComposingOn(true)}>
-                <i className="fa-solid fa-pencil compose-icon"></i>
-                Compose</button>
-            <MailNav />
-        </aside>
-
-        <div className='mail-content-container'>
-            <div className='mail-details-actions'>
-                <i className='go-back fa-solid fa-arrow-left' onClick={onGoBack} title='Back to Inbox'></i>
-                <i className='delete-mail fa-solid fa-trash-can' onClick={onDeleteMail} title='Delete'></i>
-                <i className='unread fa-regular fa-envelope' title='Mark as unread'></i>
-            </div>
-            <div className='mail-details-subject'>{selectedMail.subject}</div>
-            <div className="mail-details-content">
-                <div className='mail-details-header'>
-                    <i className="fa-solid fa-user-large user-icon"></i>
-                    <div className='sent-from'>{selectedMail.from}</div>
-                    <span className='sent-at'>{utilService.getFormattedDate(selectedMail.sentAt)}</span>
-                    <div className='mail-star'>
-                        {selectedMail.isStarred ?
-                            <i className='fa-solid fa-star starred' title='Starred'></i>
-                            :
-                            <i className='fa-regular fa-star star' title='Starred'></i>
-                        }
+                        <div className='mail-star' onClick={onToggleStarred}>
+                            {selectedMail.isStarred ? (
+                                <i className='fa-solid fa-star star starred' title='Starred'></i>
+                            ) : (
+                                <i className='fa-regular fa-star star' title='Not starred'></i>
+                            )}
+                        </div>
                     </div>
                 </div>
+                <div className='mail-details-body'>{selectedMail.body}</div>
             </div>
-            <div className='mail-details-body'>
-                {selectedMail.body}
-            </div>
-        </div>
-    </section>
+        </section>
+    )
 }
-
